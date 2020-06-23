@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeVC" customModule="text_validator_demo" customModuleProvider="target">
+            <connections>
+                <outlet property="containerView" destination="cJj-Rc-lrA" id="cZq-g1-7dK"/>
+                <outlet property="contentTypeTextField" destination="Bm4-9F-0I4" id="WBu-X5-0u8"/>
+                <outlet property="scrollView" destination="0d5-rB-CtX" id="fEh-vg-uMZ"/>
+                <outlet property="submitButton" destination="Bb5-Dy-9A2" id="0v1-vu-Z9R"/>
+                <outlet property="validationContainerView" destination="Qdd-1U-tL5" id="ihb-hY-ub4"/>
+                <outlet property="validationDropDownButton" destination="7dM-gW-fHH" id="SHV-rw-ARK"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0d5-rB-CtX">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cJj-Rc-lrA" userLabel="Content View">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qdd-1U-tL5" userLabel="Validation Container View">
+                                    <rect key="frame" x="20" y="389" width="374" height="40"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Content Type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bm4-9F-0I4" customClass="TextField" customModule="text_validator_demo" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="334" height="40"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dM-gW-fHH" customClass="DropDownButton" customModule="text_validator_demo" customModuleProvider="target">
+                                            <rect key="frame" x="334" y="0.0" width="40" height="40"/>
+                                            <color key="backgroundColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="7dM-gW-fHH" secondAttribute="height" multiplier="1:1" id="phf-xg-Sfi"/>
+                                            </constraints>
+                                            <state key="normal" image="chevron_down"/>
+                                            <connections>
+                                                <action selector="validationDropDownEvent:" destination="-1" eventType="touchUpInside" id="M6A-wZ-gzj"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="7dM-gW-fHH" firstAttribute="height" secondItem="Qdd-1U-tL5" secondAttribute="height" id="AL1-Td-quy"/>
+                                        <constraint firstAttribute="bottom" secondItem="Bm4-9F-0I4" secondAttribute="bottom" id="EgK-af-M3H"/>
+                                        <constraint firstItem="Bm4-9F-0I4" firstAttribute="top" secondItem="Qdd-1U-tL5" secondAttribute="top" id="frW-b0-CP6"/>
+                                        <constraint firstItem="7dM-gW-fHH" firstAttribute="centerY" secondItem="Qdd-1U-tL5" secondAttribute="centerY" id="ifl-S1-L0t"/>
+                                        <constraint firstAttribute="height" constant="40" id="m1u-HU-XUJ"/>
+                                        <constraint firstItem="7dM-gW-fHH" firstAttribute="leading" secondItem="Bm4-9F-0I4" secondAttribute="trailing" id="vhl-km-xbe"/>
+                                        <constraint firstAttribute="trailing" secondItem="7dM-gW-fHH" secondAttribute="trailing" id="y5Z-XV-wvl"/>
+                                        <constraint firstItem="Bm4-9F-0I4" firstAttribute="leading" secondItem="Qdd-1U-tL5" secondAttribute="leading" id="yMT-eC-Ib4"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstItem="Qdd-1U-tL5" firstAttribute="centerY" secondItem="cJj-Rc-lrA" secondAttribute="centerY" id="BSm-D9-mIP"/>
+                                <constraint firstItem="Qdd-1U-tL5" firstAttribute="leading" secondItem="cJj-Rc-lrA" secondAttribute="leading" constant="20" id="D3L-pw-fOa"/>
+                                <constraint firstAttribute="trailing" secondItem="Qdd-1U-tL5" secondAttribute="trailing" constant="20" id="Nzi-5w-3mQ"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bb5-Dy-9A2">
+                            <rect key="frame" x="20" y="738" width="374" height="50"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="bkp-rL-ddy"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                            <state key="normal" title="Submit">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="submitEvent:" destination="-1" eventType="touchUpInside" id="T6H-kT-PpV"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="Bb5-Dy-9A2" firstAttribute="trailing" secondItem="Qdd-1U-tL5" secondAttribute="trailing" id="1ZR-Bo-o8q"/>
+                        <constraint firstItem="cJj-Rc-lrA" firstAttribute="centerX" secondItem="0d5-rB-CtX" secondAttribute="centerX" id="IVl-vV-E8b"/>
+                        <constraint firstAttribute="bottom" secondItem="Bb5-Dy-9A2" secondAttribute="bottom" constant="30" id="Ncs-fr-NuK"/>
+                        <constraint firstAttribute="bottom" secondItem="cJj-Rc-lrA" secondAttribute="bottom" priority="250" id="PEJ-A9-GRZ"/>
+                        <constraint firstItem="cJj-Rc-lrA" firstAttribute="top" secondItem="0d5-rB-CtX" secondAttribute="top" id="V9Y-Sj-dmO"/>
+                        <constraint firstItem="Bb5-Dy-9A2" firstAttribute="leading" secondItem="Qdd-1U-tL5" secondAttribute="leading" id="j5d-EN-i0e"/>
+                        <constraint firstItem="cJj-Rc-lrA" firstAttribute="centerY" secondItem="0d5-rB-CtX" secondAttribute="centerY" priority="250" id="q4F-vD-G9H"/>
+                        <constraint firstItem="cJj-Rc-lrA" firstAttribute="leading" secondItem="0d5-rB-CtX" secondAttribute="leading" id="uH7-DT-dAg"/>
+                        <constraint firstAttribute="trailing" secondItem="cJj-Rc-lrA" secondAttribute="trailing" id="vgx-Mh-CGB"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="0d5-rB-CtX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="LfM-bt-4UM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="0d5-rB-CtX" secondAttribute="bottom" id="MpX-Pb-zan"/>
+                <constraint firstItem="0d5-rB-CtX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ksn-Bf-87u"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="0d5-rB-CtX" secondAttribute="trailing" id="olI-us-Wpa"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="112.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="chevron_down" width="24" height="24"/>
+    </resources>
+</document>
