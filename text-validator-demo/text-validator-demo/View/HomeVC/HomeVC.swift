@@ -109,6 +109,7 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
         if let validationError = validationError {
             presentErrorAlert(validationError)
         } else {
+            guard isSuccessMessageHidden else { return }
             UIView.animate(withDuration: 1.5, delay: 0, options: [.autoreverse], animations: { [weak self] in
                 self?.isSuccessMessageHidden = false
                 }, completion: { [weak self] _ in
