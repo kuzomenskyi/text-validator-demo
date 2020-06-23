@@ -21,7 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if #available(iOS 13, *) {
         } else {
             window = UIWindow(frame: UIScreen.main.bounds)
-            let navigationController = UINavigationController(rootViewController: HomeVC())
+            let homeScreen = HomeVC(nibName: R.nib.homeVC.name, bundle: R.nib.homeVC.bundle)
+            let navigationController = UINavigationController(rootViewController: homeScreen)
             let navBar = navigationController.navigationBar
             navBar.shadowImage = UIImage()
             navBar.barTintColor = UIColor.App.jellyBean
