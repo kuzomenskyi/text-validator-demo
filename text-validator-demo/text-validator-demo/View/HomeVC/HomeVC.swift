@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeVC: UIViewController {
+class HomeVC: UIViewController, TextValidator, IAlertHelper {
     // MARK: Constant
     let dropDownMenuRowHeight: CGFloat = 50
     
@@ -30,11 +30,36 @@ class HomeVC: UIViewController {
     // dropDownMenuHeight
     var expandedStateHeight: CGFloat = 150
     
+    var validationDropDownButtonDataSource = [ContentType]() {
+        didSet {
+            validationDropDownButton.dataSource = validationDropDownButtonDataSource
+        }
+    }
+    
+    var selectedContentType: ContentType?
+    var message = Message(message: Constants.validTextAlertMessage, image: R.image.successArrow(), color: UIColor(red: 3/255, green: 252/255, blue: 182/255, alpha: 1))
+    
+    var isSuccessMessageHidden: Bool {
+        get {
+            return messageView.isHidden
+        }
+        set(needsToHide) {
+            messageView.isHidden = needsToHide
+            let newAlpha: CGFloat = needsToHide ? 0 : 1
+            messageView.alpha = newAlpha
+        }
+    }
+    
     lazy var dropDownButtons = [validationDropDownButton]
     
     lazy var dropDownMenuButtons: [DropDownMenuButton] = [
         DropDownMenuButton(anchorView: validationContainerView, dropDownMenuDelegate: self)
     ]
+    
+    lazy var messageView: MessageView = {
+        let messageView = MessageView(withMessage: message)
+        return messageView
+    }()
     
     // MARK: Outlet
     @IBOutlet var scrollView: UIScrollView!
@@ -48,17 +73,13 @@ class HomeVC: UIViewController {
     // MARK: View Controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = Constants.homeVCNavigationItemTitle
         view.backgroundColor = .white
-        validationDropDownButton.dataSource = [
-            ContentType(name: ContentType.Name.none.rawValue.capitalized),
-            ContentType(name: ContentType.Name.username.rawValue.capitalized),
-            ContentType(name: ContentType.Name.age.rawValue.capitalized),
-            ContentType(name: ContentType.Name.password.rawValue.capitalized)
-        ]
         contentTypeTextField.isUserInteractionEnabled = false
-        
+        configureValidationDropDownButton()
         configureValidationContainerView()
         configureDropDownButtons()
+        configureMessageView()
         let textFields = [contentTypeTextField, validationTextField]
         textFields.forEach { $0?.insets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0) }
     }
@@ -77,11 +98,37 @@ class HomeVC: UIViewController {
     }
     
     @IBAction func submitEvent(_ sender: Any) {
-        #warning("Configure event")
-        // display alert if text field content type is nil
+        validationTextField.validationRules = selectedContentType?.rules
+        guard let validationRules = validationTextField.validationRules else { return }
+        var validationError: Error?
+        
+        validate(validationTextField.text, textFieldName: "Text", withRules: validationRules, completion: { (error) in
+            validationError = error
+        })
+        
+        if let validationError = validationError {
+            presentErrorAlert(validationError)
+        } else {
+            UIView.animate(withDuration: 1.5, delay: 0, options: [.autoreverse], animations: { [weak self] in
+                self?.isSuccessMessageHidden = false
+                }, completion: { [weak self] _ in
+                    self?.isSuccessMessageHidden = true
+            })
+        }
+
+        #warning("Display alert if text field content type is nil")
     }
     
     // MARK: Function
+    func configureValidationDropDownButton() {
+        validationDropDownButtonDataSource = [
+        ContentType(name: ContentType.Name.none.rawValue.capitalized),
+        ContentType(name: ContentType.Name.username.rawValue.capitalized, rules: ValidationRules(minLength: 1, maxLength: 20, areSpaceSymbolsConsidered: true, mustContainOnlyLetters: true)),
+        ContentType(name: ContentType.Name.age.rawValue.capitalized, rules: ValidationRules(minLength: 1, maxLength: 3, areSpaceSymbolsConsidered: false, mustContainOnlyNumbers: true)),
+        ContentType(name: ContentType.Name.password.rawValue.capitalized, rules: ValidationRules(minLength: 6, maxLength: 20, areSpaceSymbolsConsidered: true, requiresBothUppercaseAndLowercase: true, requiresAtLeastOneNumberAndCharacter: true))
+        ]
+    }
+    
     func configureValidationContainerView() {
         validationContainerView.clipsToBounds = true
         validationContainerView.layer.cornerRadius = 10
@@ -124,6 +171,20 @@ class HomeVC: UIViewController {
             }
         }
     }
+    
+    func configureMessageView() {
+        isSuccessMessageHidden = true
+        
+        view.addSubview(messageView)
+        messageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            messageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.frame.width * 0.2),
+            messageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -view.frame.width * 0.2),
+            messageView.bottomAnchor.constraint(equalTo: submitButton.topAnchor, constant: -20),
+            messageView.heightAnchor.constraint(equalTo: submitButton.heightAnchor, multiplier: 0.6)
+        ])
+    }
 }
 
 // MARK: - DropDownMenuDelegate
@@ -150,6 +211,7 @@ extension HomeVC: UITableViewDelegate {
                 output = contentType.name
             }
             
+            selectedContentType = contentType
             contentTypeTextField.text = output
         }
         expandedMenuButton?.shortenDropDownMenu()
