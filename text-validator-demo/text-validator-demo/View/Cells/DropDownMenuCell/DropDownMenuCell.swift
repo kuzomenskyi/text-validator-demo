@@ -21,15 +21,15 @@ class DropDownMenuCell: UITableViewCell {
     // MARK: Action
     
     // MARK: Private Function
-    private func configure(withString string: String) {
-        label.text = string
+    private func configure(withContentType contentType: ContentType) {
+        label.text = contentType.name
     }
 }
 
 extension DropDownMenuCell: ConfigurableCell {
     func configure(withAny input: Any) {
-        if let string = input as? String {
-            configure(withString: string)
+        if let contentType = input as? ContentType {
+            configure(withContentType: contentType)
         }
     }
 }

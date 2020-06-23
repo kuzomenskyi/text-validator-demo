@@ -15,6 +15,7 @@
                 <outlet property="submitButton" destination="Bb5-Dy-9A2" id="0v1-vu-Z9R"/>
                 <outlet property="validationContainerView" destination="Qdd-1U-tL5" id="ihb-hY-ub4"/>
                 <outlet property="validationDropDownButton" destination="7dM-gW-fHH" id="SHV-rw-ARK"/>
+                <outlet property="validationTextField" destination="ld8-cx-iKa" id="zt1-uo-M0w"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,6 +30,11 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cJj-Rc-lrA" userLabel="Content View">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                             <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Text to validate" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ld8-cx-iKa" customClass="TextField" customModule="text_validator_demo" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="329" width="374" height="40"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qdd-1U-tL5" userLabel="Validation Container View">
                                     <rect key="frame" x="20" y="389" width="374" height="40"/>
                                     <subviews>
@@ -64,20 +70,24 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
+                                <constraint firstItem="ld8-cx-iKa" firstAttribute="trailing" secondItem="Qdd-1U-tL5" secondAttribute="trailing" id="7Wi-dE-bCo"/>
                                 <constraint firstItem="Qdd-1U-tL5" firstAttribute="centerY" secondItem="cJj-Rc-lrA" secondAttribute="centerY" id="BSm-D9-mIP"/>
                                 <constraint firstItem="Qdd-1U-tL5" firstAttribute="leading" secondItem="cJj-Rc-lrA" secondAttribute="leading" constant="20" id="D3L-pw-fOa"/>
+                                <constraint firstItem="ld8-cx-iKa" firstAttribute="height" secondItem="Qdd-1U-tL5" secondAttribute="height" id="H0i-V1-yr5"/>
                                 <constraint firstAttribute="trailing" secondItem="Qdd-1U-tL5" secondAttribute="trailing" constant="20" id="Nzi-5w-3mQ"/>
+                                <constraint firstItem="ld8-cx-iKa" firstAttribute="leading" secondItem="Qdd-1U-tL5" secondAttribute="leading" id="h9j-ky-Ot8"/>
+                                <constraint firstItem="Qdd-1U-tL5" firstAttribute="top" secondItem="ld8-cx-iKa" secondAttribute="bottom" constant="20" id="yB8-Iq-dco"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bb5-Dy-9A2">
                             <rect key="frame" x="20" y="738" width="374" height="50"/>
-                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <color key="backgroundColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="bkp-rL-ddy"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
-                            <state key="normal" title="Submit">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
+                            <state key="normal" title="Validate">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
                                 <action selector="submitEvent:" destination="-1" eventType="touchUpInside" id="T6H-kT-PpV"/>

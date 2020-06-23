@@ -39,6 +39,7 @@ class HomeVC: UIViewController {
     // MARK: Outlet
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var containerView: UIView!
+    @IBOutlet var validationTextField: TextField!
     @IBOutlet var validationContainerView: UIView!
     @IBOutlet var contentTypeTextField: TextField!
     @IBOutlet var validationDropDownButton: DropDownButton!
@@ -48,12 +49,18 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        #warning("Configure data source")
-        validationDropDownButton.dataSource = ["Test", "Test", "Test", "Test", "Test", "Test"]
+        validationDropDownButton.dataSource = [
+            ContentType(name: ContentType.Name.none.rawValue.capitalized),
+            ContentType(name: ContentType.Name.username.rawValue.capitalized),
+            ContentType(name: ContentType.Name.age.rawValue.capitalized),
+            ContentType(name: ContentType.Name.password.rawValue.capitalized)
+        ]
         contentTypeTextField.isUserInteractionEnabled = false
         
         configureValidationContainerView()
         configureDropDownButtons()
+        let textFields = [contentTypeTextField, validationTextField]
+        textFields.forEach { $0?.insets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0) }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,6 +78,7 @@ class HomeVC: UIViewController {
     
     @IBAction func submitEvent(_ sender: Any) {
         #warning("Configure event")
+        // display alert if text field content type is nil
     }
     
     // MARK: Function
@@ -82,10 +90,11 @@ class HomeVC: UIViewController {
     
     func configureDropDownButtons() {
         for button in dropDownButtons.enumerated() {
-            button.element?.dropDownTableView?.backgroundColor = .lightText
+            button.element?.dropDownTableView?.backgroundColor = .systemGroupedBackground
             button.element?.dropDownMenuDelegate = dropDownMenuButtons[button.offset].dropDownMenuDelegate
             button.element?.anchorView = dropDownMenuButtons[button.offset].anchorView
             button.element?.dropDownTableView?.rowHeight = dropDownMenuRowHeight
+            setDropDownTableViewsScrolling(isEnabled: true)
             assert(cellToDisplay != nil, "@@@@@ HomeVC's cellToDisplay is nil!")
             guard let cellToDisplay = cellToDisplay else { return }
             button.element?.dropDownTableView?.register(UINib(nibName: cellToDisplay.identifier, bundle: nil), forCellReuseIdentifier: cellToDisplay.identifier)
@@ -134,8 +143,14 @@ extension HomeVC: UITableViewDelegate {
         let selectedValue = expandedDropDownMenuDataSource[indexPath.row]
         
         #warning("Refactor that to conform the OCP")
-        if expandedMenuButton == validationDropDownButton, let value = selectedValue as? String {
-            contentTypeTextField.text = value
+        if expandedMenuButton == validationDropDownButton, let contentType = selectedValue as? ContentType {
+            var output = ""
+            
+            if contentType.name.lowercased() != ContentType.Name.none.rawValue.lowercased() {
+                output = contentType.name
+            }
+            
+            contentTypeTextField.text = output
         }
         expandedMenuButton?.shortenDropDownMenu()
     }
