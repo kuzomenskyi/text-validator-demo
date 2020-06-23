@@ -19,7 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
         window = UIWindow(windowScene: windowScene)
-        let navigationController = UINavigationController(rootViewController: HomeVC())
+        let homeScreen = HomeVC(nibName: R.nib.homeVC.name, bundle: R.nib.homeVC.bundle)
+        let navigationController = UINavigationController(rootViewController: homeScreen)
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.backgroundEffect = .none
         navBarAppearance.backgroundImage = nil
