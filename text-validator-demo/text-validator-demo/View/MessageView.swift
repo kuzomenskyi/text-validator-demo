@@ -44,6 +44,7 @@ class MessageView: UIView {
     }
     
     func configureMessageImageView(withImage image: UIImage) {
+        messageImageView.image = image
         messageImageView.tintColor = message?.color ?? .green
         
         addSubview(messageImageView)
