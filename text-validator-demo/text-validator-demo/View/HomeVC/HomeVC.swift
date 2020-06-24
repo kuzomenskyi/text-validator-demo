@@ -37,7 +37,7 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
     }
     
     var selectedContentType: ContentType?
-    var message = Message(message: Constants.validTextAlertMessage, image: R.image.successArrow(), color: UIColor(red: 3/255, green: 252/255, blue: 182/255, alpha: 1))
+    var successMessage = Message(message: Constants.validTextAlertMessage, image: R.image.successArrow(), color: UIColor.App.brightTurquoise)
     
     var isSuccessMessageHidden: Bool {
         get {
@@ -57,7 +57,7 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
     ]
     
     lazy var messageView: MessageView = {
-        let messageView = MessageView(withMessage: message)
+        let messageView = MessageView(withMessage: successMessage)
         return messageView
     }()
     
@@ -99,7 +99,15 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
     
     @IBAction func submitEvent(_ sender: Any) {
         validationTextField.validationRules = selectedContentType?.rules
-        guard let validationRules = validationTextField.validationRules else { return }
+        guard let validationText = validationTextField.text, validationText.count > 0 else {
+            let error = CustomError(title: "", description: Constants.emptyValidationTextErrorDescription, code: -1)
+            presentErrorAlert(error); return
+        }
+        
+        guard let validationRules = validationTextField.validationRules else {
+            let error = CustomError(title: "", description: Constants.contentTypeIsNotSelectedErrorDescription, code: -1)
+            presentErrorAlert(error); return
+        }
         var validationError: Error?
         
         validate(validationTextField.text, textFieldName: "Text", withRules: validationRules, completion: { (error) in
@@ -124,7 +132,7 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
     func configureValidationDropDownButton() {
         validationDropDownButtonDataSource = [
         ContentType(name: ContentType.Name.none.rawValue.capitalized),
-        ContentType(name: ContentType.Name.username.rawValue.capitalized, rules: ValidationRules(minLength: 1, maxLength: 20, areSpaceSymbolsConsidered: true, mustContainOnlyLetters: true)),
+        ContentType(name: ContentType.Name.username.rawValue.capitalized, rules: ValidationRules(minLength: 4, maxLength: 20, areSpaceSymbolsConsidered: true, mustContainOnlyLetters: true)),
         ContentType(name: ContentType.Name.age.rawValue.capitalized, rules: ValidationRules(minLength: 1, maxLength: 3, areSpaceSymbolsConsidered: false, mustContainOnlyNumbers: true)),
         ContentType(name: ContentType.Name.password.rawValue.capitalized, rules: ValidationRules(minLength: 6, maxLength: 20, areSpaceSymbolsConsidered: true, requiresBothUppercaseAndLowercase: true, requiresAtLeastOneNumberAndCharacter: true))
         ]

@@ -79,7 +79,7 @@
                                 <constraint firstItem="Qdd-1U-tL5" firstAttribute="top" secondItem="ld8-cx-iKa" secondAttribute="bottom" constant="20" id="yB8-Iq-dco"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bb5-Dy-9A2">
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bb5-Dy-9A2">
                             <rect key="frame" x="20" y="738" width="374" height="50"/>
                             <color key="backgroundColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -89,6 +89,11 @@
                             <state key="normal" title="Validate">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="submitEvent:" destination="-1" eventType="touchUpInside" id="T6H-kT-PpV"/>
                             </connections>

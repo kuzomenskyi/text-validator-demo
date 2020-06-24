@@ -30,6 +30,8 @@ struct Constants {
     static let validTextAlertMessage = "Validation succeeded"
     
     // MARK: ErrorDesctiptions
+    static let emptyValidationTextErrorDescription = "Text to validate is empty"
+    static let contentTypeIsNotSelectedErrorDescription = "Content type is not selected"
     
     // MARK: API
     
