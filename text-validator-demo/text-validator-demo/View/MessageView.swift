@@ -44,7 +44,7 @@ class MessageView: UIView {
     }
     
     func configureMessageImageView(withImage image: UIImage) {
-        messageImageView.image = image.withTintColor((message?.color ?? .green))
+        messageImageView.tintColor = message?.color ?? .green
         
         addSubview(messageImageView)
         messageImageView.translatesAutoresizingMaskIntoConstraints = false

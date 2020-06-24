@@ -30,6 +30,10 @@ protocol DropDownButtonDelegate: UIView {
 }
 
 class DropDownButton: UIButton, IDropDownButton {
+    enum ButtonAnimation {
+        case flip, crossDissolve
+    }
+    
     // MARK: Constant
     let defaultDropDownMenuHeight: CGFloat = 150
     
@@ -50,6 +54,8 @@ class DropDownButton: UIButton, IDropDownButton {
         }
     }
     
+    var buttonAnimation: ButtonAnimation? = .crossDissolve
+    
     lazy var dropDownView: DropDownButtonDelegate = {
         let dropDownView: DropDownButtonDelegate = DropDownView(frame: .zero)
         dropDownView.delegate = self
@@ -67,6 +73,7 @@ class DropDownButton: UIButton, IDropDownButton {
             if isRounded {
                 updateAnchorViewLowerCornerRadius()
             }
+            animateButtonIfNeeded()
         }
     }
     
@@ -207,6 +214,29 @@ class DropDownButton: UIButton, IDropDownButton {
     
     private func setTableViewSctolling(enabled: Bool) {
         dropDownButtonDelegate?.tableView.isScrollEnabled = enabled
+    }
+    
+    private func animateButtonIfNeeded() {
+        guard let buttonAnimation = buttonAnimation else { return }
+        
+        let angle: CGFloat = isExpanded ? (180.0 * .pi) / 180.0 : 0
+        var duration: TimeInterval = 0.25
+        let transform = CGAffineTransform(rotationAngle: angle)
+        var options = AnimationOptions()
+        var block: () -> Void = { [weak self] in
+            self?.imageView?.transform = transform
+        }
+        
+        if buttonAnimation == .crossDissolve {
+            options = [.transitionCrossDissolve]
+            block = { [weak self] in
+                self?.imageView?.alpha = 0
+                self?.imageView?.alpha = 1
+            }
+            imageView?.transform = transform
+        }
+        
+        UIView.animate(withDuration: duration, delay: 0, options: options, animations: block)
     }
 }
 

@@ -146,7 +146,7 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
     
     func configureDropDownButtons() {
         for button in dropDownButtons.enumerated() {
-            button.element?.dropDownTableView?.backgroundColor = .systemGroupedBackground
+            button.element?.dropDownTableView?.backgroundColor = .lightText
             button.element?.dropDownMenuDelegate = dropDownMenuButtons[button.offset].dropDownMenuDelegate
             button.element?.anchorView = dropDownMenuButtons[button.offset].anchorView
             button.element?.dropDownTableView?.rowHeight = dropDownMenuRowHeight
