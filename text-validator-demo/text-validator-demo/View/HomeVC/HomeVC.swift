@@ -226,6 +226,10 @@ extension HomeVC: UITableViewDelegate {
             selectedContentType = contentType
             contentTypeTextField.text = output
             imageView.kf.setImage(with: contentType.imageURL, options: [.transition(.fade(0.5))])
+            if validationTextField.isSecureTextEntry {
+                validationTextField.text = ""
+            }
+            validationTextField.isSecureTextEntry = contentType.name.lowercased() == ContentType.Name.password.rawValue.lowercased()
         }
         expandedMenuButton?.shortenDropDownMenu()
     }
