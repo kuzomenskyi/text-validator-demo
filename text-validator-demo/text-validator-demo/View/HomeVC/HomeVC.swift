@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HomeVC: UIViewController, TextValidator, IAlertHelper {
     // MARK: Constant
@@ -64,6 +65,7 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
     // MARK: Outlet
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var containerView: UIView!
+    @IBOutlet var imageView: UIImageView!
     @IBOutlet var validationTextField: TextField!
     @IBOutlet var validationContainerView: UIView!
     @IBOutlet var contentTypeTextField: TextField!
@@ -75,6 +77,7 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
         super.viewDidLoad()
         navigationItem.title = Constants.homeVCNavigationItemTitle
         view.backgroundColor = .white
+        imageView.kf.setImage(with: URL.App.placeholderImageURL, options: [.transition(.fade(0.5))])
         contentTypeTextField.isUserInteractionEnabled = false
         configureValidationDropDownButton()
         configureValidationContainerView()
@@ -131,10 +134,10 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
     // MARK: Function
     func configureValidationDropDownButton() {
         validationDropDownButtonDataSource = [
-        ContentType(name: ContentType.Name.none.rawValue.capitalized),
-        ContentType(name: ContentType.Name.username.rawValue.capitalized, rules: ValidationRules(minLength: 4, maxLength: 20, areSpaceSymbolsConsidered: true, mustContainOnlyLetters: true)),
-        ContentType(name: ContentType.Name.age.rawValue.capitalized, rules: ValidationRules(minLength: 1, maxLength: 3, areSpaceSymbolsConsidered: false, mustContainOnlyNumbers: true)),
-        ContentType(name: ContentType.Name.password.rawValue.capitalized, rules: ValidationRules(minLength: 6, maxLength: 20, areSpaceSymbolsConsidered: true, requiresBothUppercaseAndLowercase: true, requiresAtLeastOneNumberAndCharacter: true))
+            ContentType(name: ContentType.Name.none.rawValue.capitalized, imageURL: URL.App.placeholderImageURL),
+        ContentType(name: ContentType.Name.username.rawValue.capitalized, rules: ValidationRules(minLength: 4, maxLength: 20, areSpaceSymbolsConsidered: true, mustContainOnlyLetters: true), imageURL: URL.App.userProfileImageURL),
+        ContentType(name: ContentType.Name.age.rawValue.capitalized, rules: ValidationRules(minLength: 1, maxLength: 3, areSpaceSymbolsConsidered: false, mustContainOnlyNumbers: true), imageURL: URL.App.ageImageURL),
+        ContentType(name: ContentType.Name.password.rawValue.capitalized, rules: ValidationRules(minLength: 6, maxLength: 20, areSpaceSymbolsConsidered: true, requiresBothUppercaseAndLowercase: true, requiresAtLeastOneNumberAndCharacter: true), imageURL: URL.App.passwordImageURL)
         ]
     }
     
@@ -222,6 +225,7 @@ extension HomeVC: UITableViewDelegate {
             
             selectedContentType = contentType
             contentTypeTextField.text = output
+            imageView.kf.setImage(with: contentType.imageURL, options: [.transition(.fade(0.5))])
         }
         expandedMenuButton?.shortenDropDownMenu()
     }

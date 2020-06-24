@@ -15,6 +15,7 @@
 		CE12A29624A20AFC0074930A /* UIColor+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12A29524A20AFC0074930A /* UIColor+App.swift */; };
 		CE12A29A24A20CE10074930A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12A29924A20CE10074930A /* R.generated.swift */; };
 		CE12A29C24A20E080074930A /* UIFont+CustomInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12A29B24A20E080074930A /* UIFont+CustomInitializer.swift */; };
+		CE1D5DE724A2E2B000468F35 /* URL+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1D5DE624A2E2B000468F35 /* URL+App.swift */; };
 		CE1FC40E24A2133F00527F0F /* UINavigationController+StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FC40D24A2133F00527F0F /* UINavigationController+StatusBar.swift */; };
 		CE1FC41624A2179F00527F0F /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FC41424A2179F00527F0F /* CustomError.swift */; };
 		CE1FC41724A2179F00527F0F /* ValidationRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FC41524A2179F00527F0F /* ValidationRules.swift */; };
@@ -53,6 +54,7 @@
 		CE12A29524A20AFC0074930A /* UIColor+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+App.swift"; sourceTree = "<group>"; };
 		CE12A29924A20CE10074930A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		CE12A29B24A20E080074930A /* UIFont+CustomInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomInitializer.swift"; sourceTree = "<group>"; };
+		CE1D5DE624A2E2B000468F35 /* URL+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+App.swift"; sourceTree = "<group>"; };
 		CE1FC40D24A2133F00527F0F /* UINavigationController+StatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+StatusBar.swift"; sourceTree = "<group>"; };
 		CE1FC41424A2179F00527F0F /* CustomError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		CE1FC41524A2179F00527F0F /* ValidationRules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationRules.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				CE1FC40D24A2133F00527F0F /* UINavigationController+StatusBar.swift */,
 				CE12A29B24A20E080074930A /* UIFont+CustomInitializer.swift */,
 				CE12A29524A20AFC0074930A /* UIColor+App.swift */,
+				CE1D5DE624A2E2B000468F35 /* URL+App.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				CE1FC42B24A23E8100527F0F /* DropDownMenuCell.swift in Sources */,
 				CE1FC41D24A236D200527F0F /* TextField.swift in Sources */,
 				CE1FC41924A217B200527F0F /* TextValidator.swift in Sources */,
+				CE1D5DE724A2E2B000468F35 /* URL+App.swift in Sources */,
 				CE1FC42D24A23E8100527F0F /* DropDownView.swift in Sources */,
 				CE12A29C24A20E080074930A /* UIFont+CustomInitializer.swift in Sources */,
 				CE3BFA2924A2B4D200C0F8F1 /* Message.swift in Sources */,

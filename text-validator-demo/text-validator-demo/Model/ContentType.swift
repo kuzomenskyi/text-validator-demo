@@ -11,6 +11,7 @@ import Foundation
 struct ContentType {
     var name: String
     var rules: ValidationRules?
+    var imageURL: URL?
     
     enum Name: String {
         case none, username, age, password

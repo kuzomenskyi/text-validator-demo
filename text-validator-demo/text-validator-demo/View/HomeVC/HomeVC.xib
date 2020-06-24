@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="containerView" destination="cJj-Rc-lrA" id="cZq-g1-7dK"/>
                 <outlet property="contentTypeTextField" destination="Bm4-9F-0I4" id="WBu-X5-0u8"/>
+                <outlet property="imageView" destination="WUE-T2-cdb" id="vba-VY-ZE8"/>
                 <outlet property="scrollView" destination="0d5-rB-CtX" id="fEh-vg-uMZ"/>
                 <outlet property="submitButton" destination="Bb5-Dy-9A2" id="0v1-vu-Z9R"/>
                 <outlet property="validationContainerView" destination="Qdd-1U-tL5" id="ihb-hY-ub4"/>
@@ -31,12 +32,12 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Text to validate" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ld8-cx-iKa" customClass="TextField" customModule="text_validator_demo" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="329" width="374" height="40"/>
+                                    <rect key="frame" x="20" y="397" width="374" height="40"/>
                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qdd-1U-tL5" userLabel="Validation Container View">
-                                    <rect key="frame" x="20" y="389" width="374" height="40"/>
+                                    <rect key="frame" x="20" y="462" width="374" height="40"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Content Type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bm4-9F-0I4" customClass="TextField" customModule="text_validator_demo" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="334" height="40"/>
@@ -67,16 +68,22 @@
                                         <constraint firstItem="Bm4-9F-0I4" firstAttribute="leading" secondItem="Qdd-1U-tL5" secondAttribute="leading" id="yMT-eC-Ib4"/>
                                     </constraints>
                                 </view>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WUE-T2-cdb">
+                                    <rect key="frame" x="20" y="20" width="374" height="327"/>
+                                </imageView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
+                                <constraint firstItem="WUE-T2-cdb" firstAttribute="top" secondItem="cJj-Rc-lrA" secondAttribute="top" constant="20" id="6cr-yb-h4L"/>
                                 <constraint firstItem="ld8-cx-iKa" firstAttribute="trailing" secondItem="Qdd-1U-tL5" secondAttribute="trailing" id="7Wi-dE-bCo"/>
-                                <constraint firstItem="Qdd-1U-tL5" firstAttribute="centerY" secondItem="cJj-Rc-lrA" secondAttribute="centerY" id="BSm-D9-mIP"/>
+                                <constraint firstItem="WUE-T2-cdb" firstAttribute="leading" secondItem="cJj-Rc-lrA" secondAttribute="leading" constant="20" id="CQo-aN-98i"/>
                                 <constraint firstItem="Qdd-1U-tL5" firstAttribute="leading" secondItem="cJj-Rc-lrA" secondAttribute="leading" constant="20" id="D3L-pw-fOa"/>
                                 <constraint firstItem="ld8-cx-iKa" firstAttribute="height" secondItem="Qdd-1U-tL5" secondAttribute="height" id="H0i-V1-yr5"/>
                                 <constraint firstAttribute="trailing" secondItem="Qdd-1U-tL5" secondAttribute="trailing" constant="20" id="Nzi-5w-3mQ"/>
+                                <constraint firstAttribute="trailing" secondItem="WUE-T2-cdb" secondAttribute="trailing" constant="20" id="crj-9v-jKU"/>
                                 <constraint firstItem="ld8-cx-iKa" firstAttribute="leading" secondItem="Qdd-1U-tL5" secondAttribute="leading" id="h9j-ky-Ot8"/>
-                                <constraint firstItem="Qdd-1U-tL5" firstAttribute="top" secondItem="ld8-cx-iKa" secondAttribute="bottom" constant="20" id="yB8-Iq-dco"/>
+                                <constraint firstItem="ld8-cx-iKa" firstAttribute="top" secondItem="WUE-T2-cdb" secondAttribute="bottom" constant="50" id="o97-9G-u1b"/>
+                                <constraint firstItem="Qdd-1U-tL5" firstAttribute="top" secondItem="ld8-cx-iKa" secondAttribute="bottom" constant="25" id="yB8-Iq-dco"/>
                             </constraints>
                         </view>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bb5-Dy-9A2">
@@ -114,6 +121,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="WUE-T2-cdb" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.364955" id="3lC-Q8-tVW"/>
                 <constraint firstItem="0d5-rB-CtX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="LfM-bt-4UM"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="0d5-rB-CtX" secondAttribute="bottom" id="MpX-Pb-zan"/>
                 <constraint firstItem="0d5-rB-CtX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ksn-Bf-87u"/>

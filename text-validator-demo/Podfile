@@ -8,5 +8,6 @@ target 'text-validator-demo' do
   # Pods for text-validator-demo
   pod 'R.swift'
   pod 'IQKeyboardManager'
+  pod 'Kingfisher'
 
 end
