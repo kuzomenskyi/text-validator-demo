@@ -45,7 +45,7 @@ class DropDownButton: UIButton, IDropDownButton {
     var dataSource = [Any]() {
         didSet {
             dropDownButtonDelegate?.tableView.reloadData()
-            dataSource.count > 5 ? self.setTableViewSctolling(enabled: true) : self.setTableViewSctolling(enabled: false)
+            dataSource.count > 3 ? self.setTableViewSctolling(enabled: true) : self.setTableViewSctolling(enabled: false)
         }
     }
     var anchorView: UIView? {
@@ -82,7 +82,24 @@ class DropDownButton: UIButton, IDropDownButton {
     // MARK: Private Variable
     private var heightConstraint = NSLayoutConstraint()
     private var bottomAnchorConstraint = NSLayoutConstraint()
-    private var heightToApply: CGFloat? { isExpanded ? 0 : dropDownButtonDelegate?.expandedStateHeight }
+    private var heightToApply: CGFloat? {
+        var output = isExpanded ? 0 : dropDownButtonDelegate?.expandedStateHeight
+        
+        // if table view content height is smaller, use it instead (if isReducesHeightToFitTheSuperviewFrame is true)
+        if let dropDownButtonDelegate = dropDownButtonDelegate {
+            let tableViewContentHeight = dropDownButtonDelegate.tableView.contentSize.height
+            let tableViewRowHeight = dropDownButtonDelegate.tableView.estimatedRowHeight
+            
+            guard tableViewContentHeight < dropDownButtonDelegate.expandedStateHeight else { return output }
+            
+            if tableViewContentHeight >= tableViewRowHeight {
+                output = dropDownButtonDelegate.tableView.contentSize.height * 1.15
+            } else {
+                output = dropDownButtonDelegate.tableView.estimatedRowHeight
+            }
+        }
+        return output
+    }
 
     // MARK: Init
     override init(frame: CGRect) {
