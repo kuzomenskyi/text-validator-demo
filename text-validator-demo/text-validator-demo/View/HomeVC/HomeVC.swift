@@ -18,6 +18,7 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
         return .lightContent
     }
     
+    var contentTypesObserver: IContentTypesObserver = ContentTypesObserver()
     var expandedDropDownMenuDataSource: [Any] { expandedMenuButton?.dataSource ?? [Any]() }
     
     var expandedMenuButton: DropDownButton? {
@@ -48,6 +49,15 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
             messageView.isHidden = needsToHide
             let newAlpha: CGFloat = needsToHide ? 0 : 1
             messageView.alpha = newAlpha
+        }
+    }
+    
+    var contentTypes: [ContentType] {
+        get {
+            return validationDropDownButtonDataSource as? [ContentType] ?? [ContentType]()
+        }
+        set {
+            validationDropDownButtonDataSource = newValue
         }
     }
     
@@ -92,6 +102,21 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
         configureMessageView()
         let textFields = [contentTypeTextField, validationTextField]
         textFields.forEach { $0?.insets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0) }
+        
+        contentTypesObserver.observeForDatabaseContentUpdate { [weak self] (notification) in
+            guard let self = self else { return }
+            self.view.isUserInteractionEnabled = false
+            
+            if let userInfo = notification.userInfo {
+                let index = self.contentTypes.firstIndex { $0.name.lowercased() == (userInfo[Constants.kContentTypeName] as? String)?.lowercased() }
+                guard let uIndex = index else { return }
+                // get product here
+                let contentTypeName = self.contentTypes[uIndex].name
+                #warning("fetch single content type with name here")
+            } else {
+                #warning("fetch all content types here")
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -45,6 +45,11 @@
 		CE358C8924A207FD001EFAD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE358C8724A207FD001EFAD5 /* LaunchScreen.storyboard */; };
 		CE3BFA2924A2B4D200C0F8F1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3BFA2824A2B4D200C0F8F1 /* Message.swift */; };
 		CE3BFA2B24A2BE7C00C0F8F1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3BFA2A24A2BE7C00C0F8F1 /* Constants.swift */; };
+		CE888F5624A484F5003098D3 /* ContentTypesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F5524A484F5003098D3 /* ContentTypesRepository.swift */; };
+		CE888F5824A484FD003098D3 /* IContentTypesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F5724A484FD003098D3 /* IContentTypesRepository.swift */; };
+		CE888F6024A50164003098D3 /* ContentTypesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F5F24A50164003098D3 /* ContentTypesObserver.swift */; };
+		CE888F6224A50173003098D3 /* IContentTypesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F6124A50173003098D3 /* IContentTypesObserver.swift */; };
+		CE888F6424A501E7003098D3 /* Notification.Name+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F6324A501E7003098D3 /* Notification.Name+App.swift */; };
 		F98F5B5E5094A0BB774C6B14 /* Pods_text_validator_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AFDD67BE91B3BA0FA934DC /* Pods_text_validator_demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +97,11 @@
 		CE358C8A24A207FD001EFAD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE3BFA2824A2B4D200C0F8F1 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		CE3BFA2A24A2BE7C00C0F8F1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CE888F5524A484F5003098D3 /* ContentTypesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTypesRepository.swift; sourceTree = "<group>"; };
+		CE888F5724A484FD003098D3 /* IContentTypesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IContentTypesRepository.swift; sourceTree = "<group>"; };
+		CE888F5F24A50164003098D3 /* ContentTypesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTypesObserver.swift; sourceTree = "<group>"; };
+		CE888F6124A50173003098D3 /* IContentTypesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IContentTypesObserver.swift; sourceTree = "<group>"; };
+		CE888F6324A501E7003098D3 /* Notification.Name+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+App.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +160,7 @@
 				CE12A29B24A20E080074930A /* UIFont+CustomInitializer.swift */,
 				CE12A29524A20AFC0074930A /* UIColor+App.swift */,
 				CE1D5DE624A2E2B000468F35 /* URL+App.swift */,
+				CE888F6324A501E7003098D3 /* Notification.Name+App.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -192,6 +203,7 @@
 		CE1FC41224A2159A00527F0F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				CE888F5E24A50155003098D3 /* ContentTypesObserver */,
 				CE1FC43324A23F2F00527F0F /* ScreenEventsObserver */,
 				CE1FC41824A217B200527F0F /* TextValidator.swift */,
 				CE0AA85F24A2B05D00409F04 /* IAlertHelper.swift */,
@@ -202,6 +214,7 @@
 		CE1FC41324A215A000527F0F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				CE888F5424A484DD003098D3 /* ContentTypesRepository */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -313,6 +326,24 @@
 				CE358C8524A207FD001EFAD5 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		CE888F5424A484DD003098D3 /* ContentTypesRepository */ = {
+			isa = PBXGroup;
+			children = (
+				CE888F5724A484FD003098D3 /* IContentTypesRepository.swift */,
+				CE888F5524A484F5003098D3 /* ContentTypesRepository.swift */,
+			);
+			path = ContentTypesRepository;
+			sourceTree = "<group>";
+		};
+		CE888F5E24A50155003098D3 /* ContentTypesObserver */ = {
+			isa = PBXGroup;
+			children = (
+				CE888F6124A50173003098D3 /* IContentTypesObserver.swift */,
+				CE888F5F24A50164003098D3 /* ContentTypesObserver.swift */,
+			);
+			path = ContentTypesObserver;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -465,9 +496,13 @@
 				CE1FC42D24A23E8100527F0F /* DropDownView.swift in Sources */,
 				CE12A29C24A20E080074930A /* UIFont+CustomInitializer.swift in Sources */,
 				CE3BFA2924A2B4D200C0F8F1 /* Message.swift in Sources */,
+				CE888F6224A50173003098D3 /* IContentTypesObserver.swift in Sources */,
 				CE12A29A24A20CE10074930A /* R.generated.swift in Sources */,
 				CE11352224A422DB00B69FDB /* UISearchBar+ColorChanging.swift in Sources */,
+				CE888F6024A50164003098D3 /* ContentTypesObserver.swift in Sources */,
+				CE888F5624A484F5003098D3 /* ContentTypesRepository.swift in Sources */,
 				CE1FC43224A23EE400527F0F /* Aliases.swift in Sources */,
+				CE888F6424A501E7003098D3 /* Notification.Name+App.swift in Sources */,
 				CE358C7D24A207FB001EFAD5 /* AppDelegate.swift in Sources */,
 				CE1FC43624A23F2F00527F0F /* ScreenEventsObserver.swift in Sources */,
 				CE0AA86224A2B08800409F04 /* Action.swift in Sources */,
@@ -480,6 +515,7 @@
 				CE1FC40E24A2133F00527F0F /* UINavigationController+StatusBar.swift in Sources */,
 				CE1FC42324A23E6A00527F0F /* Animation.swift in Sources */,
 				CE1FC42124A23E6A00527F0F /* DropDownMenuButton.swift in Sources */,
+				CE888F5824A484FD003098D3 /* IContentTypesRepository.swift in Sources */,
 				CE1FC43024A23EB300527F0F /* ConfigurableCell.swift in Sources */,
 				CE352B4D24A2F4DB0039F80B /* ContentTypesListVC.swift in Sources */,
 				CE0AA86524A2B41500409F04 /* MessageView.swift in Sources */,

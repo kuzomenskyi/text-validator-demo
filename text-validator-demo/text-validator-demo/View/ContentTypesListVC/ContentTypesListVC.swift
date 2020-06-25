@@ -8,18 +8,52 @@
 
 import UIKit
 
-class ContentTypesListVC: UIViewController {
+class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
     // MARK: Constant
-    let tableViewRowHeight: CGFloat = 60
+    let tableViewRowHeight: CGFloat = 75
     
     // MARK: Variable
+    var contentTypes = [ContentType]() {
+        didSet {
+            dataSourceChangedEvent()
+        }
+    }
+    
+    var filteredContentTypes = [ContentType]() {
+        didSet {
+            updateTableView()
+        }
+    }
+    
+    var isSearching = false {
+        didSet {
+            updateTableView()
+        }
+    }
+    
+    var isContentTypeWasRemoved: Bool = false
+    
     lazy var plusButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: R.image.plus(), style: .plain, target: self, action: #selector(plusEvent))
         button.tintColor = .white
         return button
     }()
     
-    var contentTypes = [ContentType]()
+    var dataSource: [ContentType] {
+        get {
+            return isSearching ? filteredContentTypes : contentTypes
+        }
+        set {
+            let changeProducts = { [weak self] in
+                self?.contentTypes = newValue
+            }
+            let changeFilteredProducts = { [weak self] in
+                self?.filteredContentTypes = newValue
+            }
+            
+            isSearching ? changeProducts() : changeFilteredProducts()
+        }
+    }
     
     // MARK: Outlet
     @IBOutlet var containerView: UIView!
@@ -34,6 +68,7 @@ class ContentTypesListVC: UIViewController {
         configureSearchBar()
         configureTableView()
         containerView.backgroundColor = UIColor.App.jellyBean
+        hideContentType(withName: "None")
     }
     
     // MARK: Init
@@ -63,7 +98,7 @@ class ContentTypesListVC: UIViewController {
         searchBar.layer.borderWidth = 0
         searchBar.backgroundImage = UIImage()
         searchBar.setTextFieldColor(color: .white)
-        #warning("Continue configuration")
+        searchBar.delegate = self
     }
     
     func configureTableView() {
@@ -72,11 +107,109 @@ class ContentTypesListVC: UIViewController {
         let removeAdditionalSeparators = { [unowned self] in self.tableView.tableFooterView = UIView() }
         removeAdditionalSeparators()
     }
+    
+    func deleteContentType(withIndexPath indexPath: IndexPath) -> Bool {
+        let contentTypeToDelete = dataSource[indexPath.row]
+//        let contentTypeName = contentTypeToDelete.name
+        var output = false
+        
+        let yesAction = Action(title: "Yes", style: .destructive, handler: { [weak self] in
+            guard let self = self else { return }
+            self.isContentTypeWasRemoved = true
+            self.contentTypes.remove(at: indexPath.row)
+            DispatchQueue.main.async {
+                self.deleteTableViewRows(at: [indexPath])
+            }
+            output = true
+        })
+        
+        let cancelAction = Action(title: Constants.cancelActionTitle, style: .cancel, handler: nil)
+        presentAlert(title: "Are you sure?", actions: [yesAction, cancelAction], completion: nil)
+
+        return output
+    }
+    
+    func startSearchEvent(searchBar: UISearchBar, searchText: String) {
+        guard isSearchTextValid(searchText) else { return }
+        
+        filteredContentTypes = contentTypes.filter {
+            let nameComponents = $0.name.components(separatedBy: " ")
+            var output = false
+            
+            for nameComponent in nameComponents {
+                if nameComponent.prefix(searchText.count).lowercased() == searchText.lowercased() {
+                    output = true
+                }
+            }
+            return output
+        }
+    }
+    
+    func stopSearchEvent() {
+        
+    }
+    
+    func updateTableView() {
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
+    
+    func deleteTableViewRows(at indexPaths: [IndexPath]) {
+        tableView.deleteRows(at: indexPaths, with: .automatic)
+    }
+    
+    func reloadTableViewRows(at indexPaths: [IndexPath]) {
+        tableView.reloadRows(at: indexPaths, with: .automatic)
+    }
+    
+    func dataSourceChangedEvent() {
+        #warning("update no content types message visibility here")
+        if !isContentTypeWasRemoved {
+            updateTableView()
+        }
+        isContentTypeWasRemoved = false
+    }
+    
+    func postProductUpdateNotification(_ contentType: ContentType?) {
+        let userInfo: [AnyHashable: Any]? = [Constants.kContentTypeName: contentType?.name ?? ""]
+        NotificationCenter.default.post(name: Notification.Name.App.databaseContentUpdateNotification, object: nil, userInfo: userInfo)
+    }
+    
+    // MARK: - Private Function
+    private func hideContentType(withName name: String) {
+        contentTypes = contentTypes.filter { $0.name != name }
+        filteredContentTypes = filteredContentTypes.filter { $0.name != name }
+    }
+    
+    private func isSearchTextValid(_ searchText: String) -> Bool {
+        let validationRules = ValidationRules(minLength: 1, areSpaceSymbolsConsidered: false)
+        var output = true
+        
+        validate(searchText, textFieldName: nil, withRules: validationRules, completion: { error in
+            if error != nil {
+                output = false
+            }
+        })
+        
+        return output
+    }
 }
 
 // MARK: - UITableViewDelegate
 extension ContentTypesListVC: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (_, _, completion) in
+            guard let self = self else { return }
+            
+            let isResultSuccessful = self.deleteContentType(withIndexPath: indexPath)
+            completion(isResultSuccessful)
+        }
+
+        let swipeActionConfig = UISwipeActionsConfiguration(actions: [delete])
+        swipeActionConfig.performsFirstActionWithFullSwipe = true
+        return swipeActionConfig
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -86,7 +219,7 @@ extension ContentTypesListVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contentTypes.count
+        return dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -96,9 +229,29 @@ extension ContentTypesListVC: UITableViewDataSource {
             return output
         }
         
-        cell.configure(withAny: contentTypes[indexPath.row])
+        cell.configure(withAny: dataSource[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }
+}
+
+// MARK: - UISearchBarDelegate
+extension ContentTypesListVC: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+    }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.count > 0 {
+            isSearching = true
+            startSearchEvent(searchBar: searchBar, searchText: searchText)
+        } else {
+            isSearching = false
+            stopSearchEvent()
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(false)
+    }
 }

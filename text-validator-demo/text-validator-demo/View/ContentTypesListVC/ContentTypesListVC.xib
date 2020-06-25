@@ -13,7 +13,7 @@
                 <outlet property="containerView" destination="3ve-lR-MG3" id="gAs-wj-j5A"/>
                 <outlet property="searchBar" destination="BpX-a5-fp8" id="YMi-VD-AKV"/>
                 <outlet property="searchContainerView" destination="c4Q-Ys-2Ve" id="t1s-Uf-0cH"/>
-                <outlet property="tableView" destination="lB5-GW-cwi" id="2PU-2U-yGy"/>
+                <outlet property="tableView" destination="lB5-GW-cwi" id="j96-AC-keV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

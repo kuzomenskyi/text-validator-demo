@@ -10,3 +10,4 @@ import Foundation
 
 typealias Completion = (() -> Void)
 typealias BoolCompletion = ((Bool) -> Void)
+typealias NotificationCompletion = ((Notification) -> Void)

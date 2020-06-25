@@ -24,6 +24,7 @@ struct Constants {
     // MARK: Indent
     
     // MARK: ActionTitles
+    static let cancelActionTitle = "Cancel"
     
     // MARK: AlertTitles
     
@@ -37,4 +38,5 @@ struct Constants {
     // MARK: API
     
     // MARK: Keys
+    static let kContentTypeName = "contentTypeName"
 }
