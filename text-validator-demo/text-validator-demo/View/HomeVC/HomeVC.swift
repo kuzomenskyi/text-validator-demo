@@ -62,6 +62,12 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
         return messageView
     }()
     
+    lazy var settingsButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: R.image.settings(), style: .plain, target: self, action: #selector(settingsEvent))
+        button.tintColor = .white
+        return button
+    }()
+    
     // MARK: Outlet
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var containerView: UIView!
@@ -76,6 +82,7 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = Constants.homeVCNavigationItemTitle
+        navigationItem.setRightBarButton(settingsButton, animated: false)
         view.backgroundColor = .white
         imageView.kf.setImage(with: URL.App.placeholderImageURL, options: [.transition(.fade(0.5))])
         contentTypeTextField.isUserInteractionEnabled = false
@@ -127,8 +134,11 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
                     self?.isSuccessMessageHidden = true
             })
         }
-
-        #warning("Display alert if text field content type is nil")
+    }
+    
+    @objc func settingsEvent() {
+        let settingsVC = SettingsVC(nibName: R.nib.settingsVC.name, bundle: R.nib.settingsVC.bundle)
+        navigationController?.pushViewController(settingsVC, animated: true)
     }
     
     // MARK: Function
