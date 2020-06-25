@@ -50,6 +50,7 @@
 		CE888F6024A50164003098D3 /* ContentTypesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F5F24A50164003098D3 /* ContentTypesObserver.swift */; };
 		CE888F6224A50173003098D3 /* IContentTypesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F6124A50173003098D3 /* IContentTypesObserver.swift */; };
 		CE888F6424A501E7003098D3 /* Notification.Name+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F6324A501E7003098D3 /* Notification.Name+App.swift */; };
+		CE888F6724A549C9003098D3 /* DefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F6624A549C9003098D3 /* DefaultsManager.swift */; };
 		F98F5B5E5094A0BB774C6B14 /* Pods_text_validator_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AFDD67BE91B3BA0FA934DC /* Pods_text_validator_demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +103,7 @@
 		CE888F5F24A50164003098D3 /* ContentTypesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTypesObserver.swift; sourceTree = "<group>"; };
 		CE888F6124A50173003098D3 /* IContentTypesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IContentTypesObserver.swift; sourceTree = "<group>"; };
 		CE888F6324A501E7003098D3 /* Notification.Name+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+App.swift"; sourceTree = "<group>"; };
+		CE888F6624A549C9003098D3 /* DefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 				CE1FC43324A23F2F00527F0F /* ScreenEventsObserver */,
 				CE1FC41824A217B200527F0F /* TextValidator.swift */,
 				CE0AA85F24A2B05D00409F04 /* IAlertHelper.swift */,
+				CE888F6624A549C9003098D3 /* DefaultsManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				CE1FC43224A23EE400527F0F /* Aliases.swift in Sources */,
 				CE888F6424A501E7003098D3 /* Notification.Name+App.swift in Sources */,
 				CE358C7D24A207FB001EFAD5 /* AppDelegate.swift in Sources */,
+				CE888F6724A549C9003098D3 /* DefaultsManager.swift in Sources */,
 				CE1FC43624A23F2F00527F0F /* ScreenEventsObserver.swift in Sources */,
 				CE0AA86224A2B08800409F04 /* Action.swift in Sources */,
 				CE1FC43924A27E4D00527F0F /* ContentType.swift in Sources */,

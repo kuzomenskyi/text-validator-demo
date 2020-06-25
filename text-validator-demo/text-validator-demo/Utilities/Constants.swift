@@ -39,4 +39,5 @@ struct Constants {
     
     // MARK: Keys
     static let kContentTypeName = "contentTypeName"
+    static let kIsContentTypeTemplatesAdded = "isContentTypeTemplatesAdded"
 }

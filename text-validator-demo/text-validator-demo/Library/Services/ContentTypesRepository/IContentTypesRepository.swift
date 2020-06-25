@@ -9,5 +9,8 @@
 import Foundation
 
 protocol IContentTypesRepository: class {
-    var storage: [ContentType] { get set }
+    func getContentTypes() -> [ContentType]
+    func insert(contentType: ContentType)
+    func update(contentTypeWithName name: String, newType: ContentType)
+    func delete(contentTypeWithName name: String)
 }

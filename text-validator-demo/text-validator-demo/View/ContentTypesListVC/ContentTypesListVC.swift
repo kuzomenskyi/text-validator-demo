@@ -13,6 +13,8 @@ class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
     let tableViewRowHeight: CGFloat = 75
     
     // MARK: Variable
+    var contentTypesRepository: IContentTypesRepository?
+    
     var contentTypes = [ContentType]() {
         didSet {
             dataSourceChangedEvent()
@@ -68,13 +70,15 @@ class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
         configureSearchBar()
         configureTableView()
         containerView.backgroundColor = UIColor.App.jellyBean
+        contentTypes = contentTypesRepository?.getContentTypes() ?? [ContentType]()
         hideContentType(withName: "None")
+        updateTableView()
     }
     
     // MARK: Init
-    init(contentTypes: [ContentType]? = nil, nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    init(contentTypesRepository: IContentTypesRepository?, nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.contentTypes = contentTypes ?? [ContentType]()
+        self.contentTypesRepository = contentTypesRepository
     }
     
     required init?(coder: NSCoder) {
@@ -117,9 +121,11 @@ class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
             guard let self = self else { return }
             self.isContentTypeWasRemoved = true
             self.contentTypes.remove(at: indexPath.row)
+            self.contentTypesRepository?.delete(contentTypeWithName: contentTypeToDelete.name)
             DispatchQueue.main.async {
                 self.deleteTableViewRows(at: [indexPath])
             }
+            self.postProductUpdateNotification(contentTypeToDelete)
             output = true
         })
         
