@@ -14,8 +14,10 @@ struct Constants {
     // MARK: ButtonTitles
     
     // MARK: NavigationItemTitles
-    static let homeVCNavigationItemTitle = "Text Validator Demo"
-    static let contentTypesListVCNavigationItemTitle = "Content Types"
+    static let homeVCTitle = "Text Validator Demo"
+    static let contentTypesListVCTitle = "Content Types"
+    static let contentTypeActionAddVCTitle = "Add Content Type"
+    static let contentTypeActionEditVCTitle = "Edit Content Type"
     
     // MARK: CellIdentifiers
     

@@ -12,6 +12,7 @@ class ContentTypeListCell: UITableViewCell {
     // MARK: Constant
     
     // MARK: Variable
+    var cellCompletion: CellCompletion?
     
     // MARK: Outlet
     @IBOutlet var contentTypeImageView: UIImageView!
@@ -22,7 +23,7 @@ class ContentTypeListCell: UITableViewCell {
     
     // MARK: Action
     @IBAction func editEvent(_ sender: Any) {
-        print("editEvent")
+        cellCompletion?(self)
     }
     
     // MARK: Function
@@ -47,5 +48,11 @@ extension ContentTypeListCell: ConfigurableCell {
         if let contentType = input as? ContentType {
             configure(withContentType: contentType)
         }
+    }
+}
+
+extension ContentTypeListCell: Completionable {
+    func setCellCompletion(completion: CellCompletion?) {
+        cellCompletion = completion
     }
 }

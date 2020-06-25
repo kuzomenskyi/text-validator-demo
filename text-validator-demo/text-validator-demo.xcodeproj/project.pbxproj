@@ -51,6 +51,9 @@
 		CE888F6224A50173003098D3 /* IContentTypesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F6124A50173003098D3 /* IContentTypesObserver.swift */; };
 		CE888F6424A501E7003098D3 /* Notification.Name+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F6324A501E7003098D3 /* Notification.Name+App.swift */; };
 		CE888F6724A549C9003098D3 /* DefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F6624A549C9003098D3 /* DefaultsManager.swift */; };
+		CE888F6B24A55B8C003098D3 /* ContentTypeActionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F6924A55B8C003098D3 /* ContentTypeActionVC.swift */; };
+		CE888F6C24A55B8C003098D3 /* ContentTypeActionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE888F6A24A55B8C003098D3 /* ContentTypeActionVC.xib */; };
+		CE888F6E24A5640E003098D3 /* Completionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F6D24A5640E003098D3 /* Completionable.swift */; };
 		F98F5B5E5094A0BB774C6B14 /* Pods_text_validator_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AFDD67BE91B3BA0FA934DC /* Pods_text_validator_demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +107,9 @@
 		CE888F6124A50173003098D3 /* IContentTypesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IContentTypesObserver.swift; sourceTree = "<group>"; };
 		CE888F6324A501E7003098D3 /* Notification.Name+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+App.swift"; sourceTree = "<group>"; };
 		CE888F6624A549C9003098D3 /* DefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManager.swift; sourceTree = "<group>"; };
+		CE888F6924A55B8C003098D3 /* ContentTypeActionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTypeActionVC.swift; sourceTree = "<group>"; };
+		CE888F6A24A55B8C003098D3 /* ContentTypeActionVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentTypeActionVC.xib; sourceTree = "<group>"; };
+		CE888F6D24A5640E003098D3 /* Completionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Completionable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +180,7 @@
 				CE1FC42F24A23EB300527F0F /* ConfigurableCell.swift */,
 				CE1FC41C24A236D200527F0F /* TextField.swift */,
 				CE3BFA2A24A2BE7C00C0F8F1 /* Constants.swift */,
+				CE888F6D24A5640E003098D3 /* Completionable.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -318,6 +325,7 @@
 				CE358C8724A207FD001EFAD5 /* LaunchScreen.storyboard */,
 				CE12A28124A209410074930A /* HomeVC */,
 				CE352B4924A2F4DB0039F80B /* ContentTypesListVC */,
+				CE888F6824A55B70003098D3 /* ContentTypeActionVC */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -347,6 +355,15 @@
 				CE888F5F24A50164003098D3 /* ContentTypesObserver.swift */,
 			);
 			path = ContentTypesObserver;
+			sourceTree = "<group>";
+		};
+		CE888F6824A55B70003098D3 /* ContentTypeActionVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE888F6924A55B8C003098D3 /* ContentTypeActionVC.swift */,
+				CE888F6A24A55B8C003098D3 /* ContentTypeActionVC.xib */,
+			);
+			path = ContentTypeActionVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -414,6 +431,7 @@
 				CE358C8924A207FD001EFAD5 /* LaunchScreen.storyboard in Resources */,
 				CE12A29324A209F60074930A /* HomeVC.xib in Resources */,
 				CE358C8624A207FD001EFAD5 /* Assets.xcassets in Resources */,
+				CE888F6C24A55B8C003098D3 /* ContentTypeActionVC.xib in Resources */,
 				CE1FC42C24A23E8100527F0F /* DropDownMenuCell.xib in Resources */,
 				CE352B4C24A2F4DB0039F80B /* ContentTypesListVC.xib in Resources */,
 			);
@@ -489,9 +507,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE1FC42E24A23E8100527F0F /* DropDownButton.swift in Sources */,
+				CE888F6B24A55B8C003098D3 /* ContentTypeActionVC.swift in Sources */,
 				CE12A29224A209F60074930A /* HomeVC.swift in Sources */,
 				CE1FC41624A2179F00527F0F /* CustomError.swift in Sources */,
 				CE12A29624A20AFC0074930A /* UIColor+App.swift in Sources */,
+				CE888F6E24A5640E003098D3 /* Completionable.swift in Sources */,
 				CE1FC42B24A23E8100527F0F /* DropDownMenuCell.swift in Sources */,
 				CE1FC41D24A236D200527F0F /* TextField.swift in Sources */,
 				CE1FC41924A217B200527F0F /* TextValidator.swift in Sources */,

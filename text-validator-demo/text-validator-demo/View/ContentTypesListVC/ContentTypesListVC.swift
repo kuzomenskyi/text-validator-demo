@@ -13,6 +13,10 @@ class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
     let tableViewRowHeight: CGFloat = 75
     
     // MARK: Variable
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     var contentTypesRepository: IContentTypesRepository?
     
     var contentTypes = [ContentType]() {
@@ -92,7 +96,7 @@ class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
     
     // MARK: Function
     func configureNavigationItem() {
-        navigationItem.title = Constants.contentTypesListVCNavigationItemTitle
+        navigationItem.title = Constants.contentTypesListVCTitle
         navigationItem.leftItemsSupplementBackButton = true
         navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.setRightBarButton(plusButton, animated: false)
@@ -107,6 +111,7 @@ class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
     
     func configureTableView() {
         tableView.delegate = self; tableView.dataSource = self
+        tableView.allowsSelection = false
         tableView.register(UINib(nibName: R.nib.contentTypeListCell.name, bundle: R.nib.contentTypeListCell.bundle), forCellReuseIdentifier: R.reuseIdentifier.contentTypeListCell.identifier)
         let removeAdditionalSeparators = { [unowned self] in self.tableView.tableFooterView = UIView() }
         removeAdditionalSeparators()
@@ -114,7 +119,6 @@ class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
     
     func deleteContentType(withIndexPath indexPath: IndexPath) -> Bool {
         let contentTypeToDelete = dataSource[indexPath.row]
-//        let contentTypeName = contentTypeToDelete.name
         var output = false
         
         let yesAction = Action(title: "Yes", style: .destructive, handler: { [weak self] in
@@ -179,7 +183,6 @@ class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
     
     func postProductUpdateNotification(_ contentType: ContentType?) {
         let userInfo: [AnyHashable: Any]? = [Constants.kContentTypeName: contentType?.name ?? ""]
-        print("userInfo:", userInfo)
         NotificationCenter.default.post(name: Notification.Name.App.databaseContentUpdateNotification, object: nil, userInfo: userInfo)
     }
     
@@ -205,6 +208,12 @@ class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
 
 // MARK: - UITableViewDelegate
 extension ContentTypesListVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let type = dataSource[indexPath.row]
+        let contentTypeActionVC = ContentTypeActionVC(contentTypeToEdit: type, nibName: R.nib.contentTypeActionVC.name, bundle: R.nib.contentTypeActionVC.bundle)
+        navigationController?.pushViewController(contentTypeActionVC, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (_, _, completion) in
             guard let self = self else { return }
@@ -238,6 +247,13 @@ extension ContentTypesListVC: UITableViewDataSource {
         
         cell.configure(withAny: dataSource[indexPath.row])
         cell.selectionStyle = .none
+        
+        if let completionableCell = cell as? Completionable {
+            completionableCell.setCellCompletion(completion: { [weak self] cell in
+                guard let selectedCellIndexPath = tableView.indexPath(for: cell) else { return }
+                self?.tableView(tableView, didSelectRowAt: selectedCellIndexPath)
+            })
+        }
         return cell
     }
 }

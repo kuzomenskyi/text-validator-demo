@@ -45,6 +45,18 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManager {
     var selectedContentType: ContentType?
     var successMessage = Message(message: Constants.validTextAlertMessage, image: R.image.successArrow(), color: UIColor.App.brightTurquoise)
     
+    var contentTypes: [ContentType] {
+        get {
+            return contentTypesRepository.getContentTypes()
+        }
+        set(newTypes) {
+            newTypes.forEach { contentTypesRepository.insert(contentType: $0) }
+            validationDropDownButtonDataSource = newTypes
+        }
+    }
+    
+    var contentTypeNeedsUpdateIndexPath: IndexPath?
+    
     var isSuccessMessageHidden: Bool {
         get {
             return messageView.isHidden
@@ -56,15 +68,7 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManager {
         }
     }
     
-    var contentTypes: [ContentType] {
-        get {
-            return contentTypesRepository.getContentTypes()
-        }
-        set(newTypes) {
-            newTypes.forEach { contentTypesRepository.insert(contentType: $0) }
-            validationDropDownButtonDataSource = newTypes
-        }
-    }
+    var isDropDownButtonTableViewUpdateNeeded = false
     
     lazy var dropDownButtons = [validationDropDownButton]
     
@@ -96,7 +100,7 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManager {
     // MARK: View Controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = Constants.homeVCNavigationItemTitle
+        navigationItem.title = Constants.homeVCTitle
         navigationItem.setRightBarButton(settingsButton, animated: false)
         view.backgroundColor = .white
         imageView.kf.setImage(with: URL.App.placeholderImageURL, options: [.transition(.fade(0.5))])
@@ -115,24 +119,17 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManager {
             if let userInfo = notification.userInfo, let editedContentTypeName = userInfo[Constants.kContentTypeName], let stringTypeName = editedContentTypeName as? String {
                 
                 if self.contentTypeTextField.text?.lowercased() == stringTypeName.lowercased() {
-                    if let validationDropDownButton = self.validationDropDownButton.dropDownTableView {
-                        self.tableView(validationDropDownButton, didSelectRowAt: IndexPath(row: 0, section: 0))
-                        
-                        DispatchQueue.main.async {
-                            if self.validationDropDownButton.isExpanded {
-                                self.validationDropDownButton.shortenDropDownMenu()
-                            }
-                        }
-                    }
+                    self.contentTypeNeedsUpdateIndexPath = IndexPath(row: 0, section: 0)
                 }
             }
-            self.updateDropDownButtonContent()
+            self.isDropDownButtonTableViewUpdateNeeded = true
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNeedsStatusBarAppearanceUpdate()
+        updateDropDownButtonIfNeeded()
     }
     
     // MARK: Init
@@ -252,6 +249,24 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManager {
         
         DispatchQueue.main.async { [weak self] in
             self?.validationDropDownButton.dropDownTableView?.reloadData()
+        }
+    }
+    
+    func updateDropDownButtonIfNeeded() {
+        if isDropDownButtonTableViewUpdateNeeded {
+            updateDropDownButtonContent()
+            isDropDownButtonTableViewUpdateNeeded = false
+            
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                if self.validationDropDownButton.isExpanded {
+                    self.validationDropDownButton.shortenDropDownMenu()
+                }
+            }
+        }
+        if let contentTypeNeedsUpdateIndexPath = contentTypeNeedsUpdateIndexPath, let validationDropDownButton = self.validationDropDownButton.dropDownTableView {
+            tableView(validationDropDownButton, didSelectRowAt: contentTypeNeedsUpdateIndexPath)
+            self.contentTypeNeedsUpdateIndexPath = nil
         }
     }
 }
