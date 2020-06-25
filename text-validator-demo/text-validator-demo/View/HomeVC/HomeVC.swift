@@ -112,6 +112,20 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManager {
         
         contentTypesObserver.observeForDatabaseContentUpdate { [weak self] (notification) in
             guard let self = self else { return }
+            if let userInfo = notification.userInfo, let editedContentTypeName = userInfo[Constants.kContentTypeName], let stringTypeName = editedContentTypeName as? String {
+                
+                if self.contentTypeTextField.text?.lowercased() == stringTypeName.lowercased() {
+                    if let validationDropDownButton = self.validationDropDownButton.dropDownTableView {
+                        self.tableView(validationDropDownButton, didSelectRowAt: IndexPath(row: 0, section: 0))
+                        
+                        DispatchQueue.main.async {
+                            if self.validationDropDownButton.isExpanded {
+                                self.validationDropDownButton.shortenDropDownMenu()
+                            }
+                        }
+                    }
+                }
+            }
             self.updateDropDownButtonContent()
         }
     }

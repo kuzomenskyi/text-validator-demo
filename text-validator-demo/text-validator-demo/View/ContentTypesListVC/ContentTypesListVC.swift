@@ -179,6 +179,7 @@ class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
     
     func postProductUpdateNotification(_ contentType: ContentType?) {
         let userInfo: [AnyHashable: Any]? = [Constants.kContentTypeName: contentType?.name ?? ""]
+        print("userInfo:", userInfo)
         NotificationCenter.default.post(name: Notification.Name.App.databaseContentUpdateNotification, object: nil, userInfo: userInfo)
     }
     
