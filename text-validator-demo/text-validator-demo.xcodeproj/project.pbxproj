@@ -11,6 +11,8 @@
 		CE0AA86224A2B08800409F04 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0AA86124A2B08800409F04 /* Action.swift */; };
 		CE0AA86524A2B41500409F04 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0AA86424A2B41500409F04 /* MessageView.swift */; };
 		CE11352224A422DB00B69FDB /* UISearchBar+ColorChanging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11352124A422DB00B69FDB /* UISearchBar+ColorChanging.swift */; };
+		CE11352624A42EC200B69FDB /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11352424A42EC200B69FDB /* SettingsCell.swift */; };
+		CE11352724A42EC200B69FDB /* SettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE11352524A42EC200B69FDB /* SettingsCell.xib */; };
 		CE12A29224A209F60074930A /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12A29024A209F60074930A /* HomeVC.swift */; };
 		CE12A29324A209F60074930A /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12A29124A209F60074930A /* HomeVC.xib */; };
 		CE12A29624A20AFC0074930A /* UIColor+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12A29524A20AFC0074930A /* UIColor+App.swift */; };
@@ -54,6 +56,8 @@
 		CE0AA86124A2B08800409F04 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		CE0AA86424A2B41500409F04 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		CE11352124A422DB00B69FDB /* UISearchBar+ColorChanging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchBar+ColorChanging.swift"; sourceTree = "<group>"; };
+		CE11352424A42EC200B69FDB /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		CE11352524A42EC200B69FDB /* SettingsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsCell.xib; sourceTree = "<group>"; };
 		CE12A29024A209F60074930A /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		CE12A29124A209F60074930A /* HomeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
 		CE12A29524A20AFC0074930A /* UIColor+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+App.swift"; sourceTree = "<group>"; };
@@ -117,6 +121,15 @@
 				C0B25B280589B85CADD54037 /* Pods-text-validator-demo.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		CE11352324A42A3E00B69FDB /* SettingsCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE11352424A42EC200B69FDB /* SettingsCell.swift */,
+				CE11352524A42EC200B69FDB /* SettingsCell.xib */,
+			);
+			path = SettingsCell;
 			sourceTree = "<group>";
 		};
 		CE12A28124A209410074930A /* HomeVC */ = {
@@ -196,6 +209,7 @@
 		CE1FC42424A23E8100527F0F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				CE11352324A42A3E00B69FDB /* SettingsCell */,
 				CE1FC42524A23E8100527F0F /* DropDownMenuCell */,
 			);
 			path = Cells;
@@ -362,6 +376,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE11352724A42EC200B69FDB /* SettingsCell.xib in Resources */,
 				CE358C8924A207FD001EFAD5 /* LaunchScreen.storyboard in Resources */,
 				CE12A29324A209F60074930A /* HomeVC.xib in Resources */,
 				CE358C8624A207FD001EFAD5 /* Assets.xcassets in Resources */,
@@ -469,6 +484,7 @@
 				CE352B4D24A2F4DB0039F80B /* SettingsVC.swift in Sources */,
 				CE0AA86524A2B41500409F04 /* MessageView.swift in Sources */,
 				CE3BFA2B24A2BE7C00C0F8F1 /* Constants.swift in Sources */,
+				CE11352624A42EC200B69FDB /* SettingsCell.swift in Sources */,
 				CE352B5124A2FAFF0039F80B /* UISearchBar+TextFieldColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,12 +6,13 @@
 //  Copyright © 2020 vladimir.kuzomenskyi. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct ContentType {
     var name: String
     var rules: ValidationRules?
     var imageURL: URL?
+    var image: UIImage?
     
     enum Name: String {
         case none, username, age, password
