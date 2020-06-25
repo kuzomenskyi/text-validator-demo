@@ -1,5 +1,5 @@
 //
-//  SettingsCell.swift
+//  ContentTypeListCell.swift
 //  text-validator-demo
 //
 //  Created by vladimir.kuzomenskyi on 6/25/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsCell: UITableViewCell {
+class ContentTypeListCell: UITableViewCell {
     // MARK: Constant
     
     // MARK: Variable
@@ -37,12 +37,12 @@ class SettingsCell: UITableViewCell {
     
     // MARK: Private Function
     private func configure(withContentType contentType: ContentType) {
-        contentTypeImageView.image = contentType.image
+        contentTypeImageView.kf.setImage(with: contentType.imageURL, options: [.transition(.fade(0.5))])
         contentTypeNameLabel.text = contentType.name
     }
 }
 
-extension SettingsCell: ConfigurableCell {
+extension ContentTypeListCell: ConfigurableCell {
     func configure(withAny input: Any) {
         if let contentType = input as? ContentType {
             configure(withContentType: contentType)

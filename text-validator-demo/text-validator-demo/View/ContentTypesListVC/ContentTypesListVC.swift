@@ -1,5 +1,5 @@
 //
-//  SettingsVC.swift
+//  ContentTypesListVC.swift
 //  text-validator-demo
 //
 //  Created by vladimir.kuzomenskyi on 6/24/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsVC: UIViewController {
+class ContentTypesListVC: UIViewController {
     // MARK: Constant
     let tableViewRowHeight: CGFloat = 60
     
@@ -53,7 +53,7 @@ class SettingsVC: UIViewController {
     
     // MARK: Function
     func configureNavigationItem() {
-        navigationItem.title = Constants.settingsVCNavigationItemTitle
+        navigationItem.title = Constants.contentTypesListVCNavigationItemTitle
         navigationItem.leftItemsSupplementBackButton = true
         navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.setRightBarButton(plusButton, animated: false)
@@ -68,19 +68,19 @@ class SettingsVC: UIViewController {
     
     func configureTableView() {
         tableView.delegate = self; tableView.dataSource = self
-        tableView.register(UINib(nibName: R.nib.settingsCell.name, bundle: R.nib.settingsCell.bundle), forCellReuseIdentifier: R.reuseIdentifier.settingsCell.identifier)
+        tableView.register(UINib(nibName: R.nib.contentTypeListCell.name, bundle: R.nib.contentTypeListCell.bundle), forCellReuseIdentifier: R.reuseIdentifier.contentTypeListCell.identifier)
         let removeAdditionalSeparators = { [unowned self] in self.tableView.tableFooterView = UIView() }
         removeAdditionalSeparators()
     }
 }
 
 // MARK: - UITableViewDelegate
-extension SettingsVC: UITableViewDelegate {
+extension ContentTypesListVC: UITableViewDelegate {
     
 }
 
 // MARK: - UITableViewDataSource
-extension SettingsVC: UITableViewDataSource {
+extension ContentTypesListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableViewRowHeight
     }
@@ -90,7 +90,7 @@ extension SettingsVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.settingsCell, for: indexPath) as? ConfigurableCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.contentTypeListCell, for: indexPath) as? ConfigurableCell else {
             let output = UITableViewCell()
             output.backgroundColor = .red
             return output

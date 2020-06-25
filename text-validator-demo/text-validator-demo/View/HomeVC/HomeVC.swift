@@ -137,8 +137,8 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
     }
     
     @objc func settingsEvent() {
-        let settingsVC = SettingsVC(contentTypes: validationDropDownButtonDataSource, nibName: R.nib.settingsVC.name, bundle: R.nib.settingsVC.bundle)
-        navigationController?.pushViewController(settingsVC, animated: true)
+        let contentTypesListVC = ContentTypesListVC(contentTypes: validationDropDownButtonDataSource, nibName: R.nib.contentTypesListVC.name, bundle: R.nib.contentTypesListVC.bundle)
+        navigationController?.pushViewController(contentTypesListVC, animated: true)
     }
     
     // MARK: Function
@@ -235,10 +235,7 @@ extension HomeVC: UITableViewDelegate {
             
             selectedContentType = contentType
             contentTypeTextField.text = output
-            imageView.kf.setImage(with: contentType.imageURL, options: [.transition(.fade(0.5))], completionHandler: { [weak self] _ in
-                guard let self = self else { return }
-                self.selectedContentType?.image = self.imageView.image
-            })
+            imageView.kf.setImage(with: contentType.imageURL, options: [.transition(.fade(0.5))])
             if validationTextField.isSecureTextEntry {
                 validationTextField.text = ""
             }
