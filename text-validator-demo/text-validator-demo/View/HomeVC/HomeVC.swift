@@ -285,6 +285,8 @@ extension HomeVC: DropDownMenuDelegate {
 // MARK: - UITableViewDelegateResponse from
 extension HomeVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let isIndexValid = !expandedDropDownMenuDataSource.isEmpty && expandedDropDownMenuDataSource.count - 1 >= indexPath.row
+        guard isIndexValid else { return }
         let selectedValue = expandedDropDownMenuDataSource[indexPath.row]
         
         #warning("Refactor that to conform the OCP")

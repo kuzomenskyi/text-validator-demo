@@ -19,11 +19,7 @@ class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
     
     var contentTypesRepository: IContentTypesRepository?
     
-    var contentTypes = [ContentType]() {
-        didSet {
-            dataSourceChangedEvent()
-        }
-    }
+    var contentTypes = [ContentType]()
     
     var filteredContentTypes = [ContentType]() {
         didSet {
@@ -75,7 +71,7 @@ class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
         configureTableView()
         containerView.backgroundColor = UIColor.App.jellyBean
         contentTypes = contentTypesRepository?.getContentTypes() ?? [ContentType]()
-        hideContentType(withName: "None")
+        removeContentType(withName: "None")
         updateTableView()
     }
     
@@ -91,7 +87,12 @@ class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
     
     // MARK: Action
     @objc func plusEvent() {
-        print("plusEvent")
+        let newType = ContentType(name: "Template \(Int.random(in: 0...9999999))", imageURL: URL.App.placeholderImageURL)
+        contentTypesRepository?.insert(contentType: newType)
+        contentTypes = contentTypesRepository?.getContentTypes() ?? [ContentType]()
+        removeContentType(withName: "None")
+        tableView.insertRows(at: [IndexPath(row: contentTypes.count - 1, section: 0)], with: .automatic)
+        postProductUpdateNotification()
     }
     
     // MARK: Function
@@ -181,13 +182,13 @@ class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
         isContentTypeWasRemoved = false
     }
     
-    func postProductUpdateNotification(_ contentType: ContentType?) {
+    func postProductUpdateNotification(_ contentType: ContentType? = nil) {
         let userInfo: [AnyHashable: Any]? = [Constants.kContentTypeName: contentType?.name ?? ""]
         NotificationCenter.default.post(name: Notification.Name.App.databaseContentUpdateNotification, object: nil, userInfo: userInfo)
     }
     
     // MARK: - Private Function
-    private func hideContentType(withName name: String) {
+    private func removeContentType(withName name: String) {
         contentTypes = contentTypes.filter { $0.name != name }
         filteredContentTypes = filteredContentTypes.filter { $0.name != name }
     }
