@@ -10,6 +10,9 @@
 		CE0AA86024A2B05D00409F04 /* IAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0AA85F24A2B05D00409F04 /* IAlertHelper.swift */; };
 		CE0AA86224A2B08800409F04 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0AA86124A2B08800409F04 /* Action.swift */; };
 		CE0AA86524A2B41500409F04 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0AA86424A2B41500409F04 /* MessageView.swift */; };
+		CE11352224A422DB00B69FDB /* UISearchBar+ColorChanging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11352124A422DB00B69FDB /* UISearchBar+ColorChanging.swift */; };
+		CE11352624A42EC200B69FDB /* ContentTypeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11352424A42EC200B69FDB /* ContentTypeListCell.swift */; };
+		CE11352724A42EC200B69FDB /* ContentTypeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE11352524A42EC200B69FDB /* ContentTypeListCell.xib */; };
 		CE12A29224A209F60074930A /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12A29024A209F60074930A /* HomeVC.swift */; };
 		CE12A29324A209F60074930A /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12A29124A209F60074930A /* HomeVC.xib */; };
 		CE12A29624A20AFC0074930A /* UIColor+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12A29524A20AFC0074930A /* UIColor+App.swift */; };
@@ -33,12 +36,24 @@
 		CE1FC43624A23F2F00527F0F /* ScreenEventsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FC43424A23F2F00527F0F /* ScreenEventsObserver.swift */; };
 		CE1FC43724A23F2F00527F0F /* IScreenEventsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FC43524A23F2F00527F0F /* IScreenEventsObserver.swift */; };
 		CE1FC43924A27E4D00527F0F /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FC43824A27E4D00527F0F /* ContentType.swift */; };
+		CE352B4C24A2F4DB0039F80B /* ContentTypesListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE352B4A24A2F4DB0039F80B /* ContentTypesListVC.xib */; };
+		CE352B4D24A2F4DB0039F80B /* ContentTypesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE352B4B24A2F4DB0039F80B /* ContentTypesListVC.swift */; };
+		CE352B5124A2FAFF0039F80B /* UISearchBar+TextFieldColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE352B4F24A2FAFF0039F80B /* UISearchBar+TextFieldColor.swift */; };
 		CE358C7D24A207FB001EFAD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE358C7C24A207FB001EFAD5 /* AppDelegate.swift */; };
 		CE358C7F24A207FB001EFAD5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE358C7E24A207FB001EFAD5 /* SceneDelegate.swift */; };
 		CE358C8624A207FD001EFAD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE358C8524A207FD001EFAD5 /* Assets.xcassets */; };
 		CE358C8924A207FD001EFAD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE358C8724A207FD001EFAD5 /* LaunchScreen.storyboard */; };
 		CE3BFA2924A2B4D200C0F8F1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3BFA2824A2B4D200C0F8F1 /* Message.swift */; };
 		CE3BFA2B24A2BE7C00C0F8F1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3BFA2A24A2BE7C00C0F8F1 /* Constants.swift */; };
+		CE888F5624A484F5003098D3 /* ContentTypesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F5524A484F5003098D3 /* ContentTypesRepository.swift */; };
+		CE888F5824A484FD003098D3 /* IContentTypesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F5724A484FD003098D3 /* IContentTypesRepository.swift */; };
+		CE888F6024A50164003098D3 /* ContentTypesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F5F24A50164003098D3 /* ContentTypesObserver.swift */; };
+		CE888F6224A50173003098D3 /* IContentTypesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F6124A50173003098D3 /* IContentTypesObserver.swift */; };
+		CE888F6424A501E7003098D3 /* Notification.Name+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F6324A501E7003098D3 /* Notification.Name+App.swift */; };
+		CE888F6724A549C9003098D3 /* DefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F6624A549C9003098D3 /* DefaultsManager.swift */; };
+		CE888F6B24A55B8C003098D3 /* ContentTypeActionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F6924A55B8C003098D3 /* ContentTypeActionVC.swift */; };
+		CE888F6C24A55B8C003098D3 /* ContentTypeActionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE888F6A24A55B8C003098D3 /* ContentTypeActionVC.xib */; };
+		CE888F6E24A5640E003098D3 /* Completionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE888F6D24A5640E003098D3 /* Completionable.swift */; };
 		F98F5B5E5094A0BB774C6B14 /* Pods_text_validator_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AFDD67BE91B3BA0FA934DC /* Pods_text_validator_demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +64,9 @@
 		CE0AA85F24A2B05D00409F04 /* IAlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAlertHelper.swift; sourceTree = "<group>"; };
 		CE0AA86124A2B08800409F04 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		CE0AA86424A2B41500409F04 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		CE11352124A422DB00B69FDB /* UISearchBar+ColorChanging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchBar+ColorChanging.swift"; sourceTree = "<group>"; };
+		CE11352424A42EC200B69FDB /* ContentTypeListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTypeListCell.swift; sourceTree = "<group>"; };
+		CE11352524A42EC200B69FDB /* ContentTypeListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentTypeListCell.xib; sourceTree = "<group>"; };
 		CE12A29024A209F60074930A /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		CE12A29124A209F60074930A /* HomeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
 		CE12A29524A20AFC0074930A /* UIColor+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+App.swift"; sourceTree = "<group>"; };
@@ -72,6 +90,9 @@
 		CE1FC43424A23F2F00527F0F /* ScreenEventsObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenEventsObserver.swift; sourceTree = "<group>"; };
 		CE1FC43524A23F2F00527F0F /* IScreenEventsObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IScreenEventsObserver.swift; sourceTree = "<group>"; };
 		CE1FC43824A27E4D00527F0F /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
+		CE352B4A24A2F4DB0039F80B /* ContentTypesListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentTypesListVC.xib; sourceTree = "<group>"; };
+		CE352B4B24A2F4DB0039F80B /* ContentTypesListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentTypesListVC.swift; sourceTree = "<group>"; };
+		CE352B4F24A2FAFF0039F80B /* UISearchBar+TextFieldColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchBar+TextFieldColor.swift"; sourceTree = "<group>"; };
 		CE358C7924A207FB001EFAD5 /* text-validator-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "text-validator-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE358C7C24A207FB001EFAD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE358C7E24A207FB001EFAD5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +101,15 @@
 		CE358C8A24A207FD001EFAD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE3BFA2824A2B4D200C0F8F1 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		CE3BFA2A24A2BE7C00C0F8F1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CE888F5524A484F5003098D3 /* ContentTypesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTypesRepository.swift; sourceTree = "<group>"; };
+		CE888F5724A484FD003098D3 /* IContentTypesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IContentTypesRepository.swift; sourceTree = "<group>"; };
+		CE888F5F24A50164003098D3 /* ContentTypesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTypesObserver.swift; sourceTree = "<group>"; };
+		CE888F6124A50173003098D3 /* IContentTypesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IContentTypesObserver.swift; sourceTree = "<group>"; };
+		CE888F6324A501E7003098D3 /* Notification.Name+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+App.swift"; sourceTree = "<group>"; };
+		CE888F6624A549C9003098D3 /* DefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManager.swift; sourceTree = "<group>"; };
+		CE888F6924A55B8C003098D3 /* ContentTypeActionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTypeActionVC.swift; sourceTree = "<group>"; };
+		CE888F6A24A55B8C003098D3 /* ContentTypeActionVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentTypeActionVC.xib; sourceTree = "<group>"; };
+		CE888F6D24A5640E003098D3 /* Completionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Completionable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +141,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		CE11352324A42A3E00B69FDB /* ContentTypeListCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE11352424A42EC200B69FDB /* ContentTypeListCell.swift */,
+				CE11352524A42EC200B69FDB /* ContentTypeListCell.xib */,
+			);
+			path = ContentTypeListCell;
+			sourceTree = "<group>";
+		};
 		CE12A28124A209410074930A /* HomeVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,10 +162,13 @@
 		CE12A29424A20AE90074930A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CE11352124A422DB00B69FDB /* UISearchBar+ColorChanging.swift */,
+				CE352B4F24A2FAFF0039F80B /* UISearchBar+TextFieldColor.swift */,
 				CE1FC40D24A2133F00527F0F /* UINavigationController+StatusBar.swift */,
 				CE12A29B24A20E080074930A /* UIFont+CustomInitializer.swift */,
 				CE12A29524A20AFC0074930A /* UIColor+App.swift */,
 				CE1D5DE624A2E2B000468F35 /* URL+App.swift */,
+				CE888F6324A501E7003098D3 /* Notification.Name+App.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -138,6 +180,7 @@
 				CE1FC42F24A23EB300527F0F /* ConfigurableCell.swift */,
 				CE1FC41C24A236D200527F0F /* TextField.swift */,
 				CE3BFA2A24A2BE7C00C0F8F1 /* Constants.swift */,
+				CE888F6D24A5640E003098D3 /* Completionable.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -169,9 +212,11 @@
 		CE1FC41224A2159A00527F0F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				CE888F5E24A50155003098D3 /* ContentTypesObserver */,
 				CE1FC43324A23F2F00527F0F /* ScreenEventsObserver */,
 				CE1FC41824A217B200527F0F /* TextValidator.swift */,
 				CE0AA85F24A2B05D00409F04 /* IAlertHelper.swift */,
+				CE888F6624A549C9003098D3 /* DefaultsManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -179,6 +224,7 @@
 		CE1FC41324A215A000527F0F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				CE888F5424A484DD003098D3 /* ContentTypesRepository */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -186,6 +232,7 @@
 		CE1FC42424A23E8100527F0F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				CE11352324A42A3E00B69FDB /* ContentTypeListCell */,
 				CE1FC42524A23E8100527F0F /* DropDownMenuCell */,
 			);
 			path = Cells;
@@ -216,6 +263,15 @@
 				CE1FC43524A23F2F00527F0F /* IScreenEventsObserver.swift */,
 			);
 			path = ScreenEventsObserver;
+			sourceTree = "<group>";
+		};
+		CE352B4924A2F4DB0039F80B /* ContentTypesListVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE352B4A24A2F4DB0039F80B /* ContentTypesListVC.xib */,
+				CE352B4B24A2F4DB0039F80B /* ContentTypesListVC.swift */,
+			);
+			path = ContentTypesListVC;
 			sourceTree = "<group>";
 		};
 		CE358C7024A207FB001EFAD5 = {
@@ -268,6 +324,8 @@
 				CE1FC42824A23E8100527F0F /* DropDownMenu */,
 				CE358C8724A207FD001EFAD5 /* LaunchScreen.storyboard */,
 				CE12A28124A209410074930A /* HomeVC */,
+				CE352B4924A2F4DB0039F80B /* ContentTypesListVC */,
+				CE888F6824A55B70003098D3 /* ContentTypeActionVC */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -279,6 +337,33 @@
 				CE358C8524A207FD001EFAD5 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		CE888F5424A484DD003098D3 /* ContentTypesRepository */ = {
+			isa = PBXGroup;
+			children = (
+				CE888F5724A484FD003098D3 /* IContentTypesRepository.swift */,
+				CE888F5524A484F5003098D3 /* ContentTypesRepository.swift */,
+			);
+			path = ContentTypesRepository;
+			sourceTree = "<group>";
+		};
+		CE888F5E24A50155003098D3 /* ContentTypesObserver */ = {
+			isa = PBXGroup;
+			children = (
+				CE888F6124A50173003098D3 /* IContentTypesObserver.swift */,
+				CE888F5F24A50164003098D3 /* ContentTypesObserver.swift */,
+			);
+			path = ContentTypesObserver;
+			sourceTree = "<group>";
+		};
+		CE888F6824A55B70003098D3 /* ContentTypeActionVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE888F6924A55B8C003098D3 /* ContentTypeActionVC.swift */,
+				CE888F6A24A55B8C003098D3 /* ContentTypeActionVC.xib */,
+			);
+			path = ContentTypeActionVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,10 +427,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE11352724A42EC200B69FDB /* ContentTypeListCell.xib in Resources */,
 				CE358C8924A207FD001EFAD5 /* LaunchScreen.storyboard in Resources */,
 				CE12A29324A209F60074930A /* HomeVC.xib in Resources */,
 				CE358C8624A207FD001EFAD5 /* Assets.xcassets in Resources */,
+				CE888F6C24A55B8C003098D3 /* ContentTypeActionVC.xib in Resources */,
 				CE1FC42C24A23E8100527F0F /* DropDownMenuCell.xib in Resources */,
+				CE352B4C24A2F4DB0039F80B /* ContentTypesListVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,9 +507,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE1FC42E24A23E8100527F0F /* DropDownButton.swift in Sources */,
+				CE888F6B24A55B8C003098D3 /* ContentTypeActionVC.swift in Sources */,
 				CE12A29224A209F60074930A /* HomeVC.swift in Sources */,
 				CE1FC41624A2179F00527F0F /* CustomError.swift in Sources */,
 				CE12A29624A20AFC0074930A /* UIColor+App.swift in Sources */,
+				CE888F6E24A5640E003098D3 /* Completionable.swift in Sources */,
 				CE1FC42B24A23E8100527F0F /* DropDownMenuCell.swift in Sources */,
 				CE1FC41D24A236D200527F0F /* TextField.swift in Sources */,
 				CE1FC41924A217B200527F0F /* TextValidator.swift in Sources */,
@@ -429,9 +519,15 @@
 				CE1FC42D24A23E8100527F0F /* DropDownView.swift in Sources */,
 				CE12A29C24A20E080074930A /* UIFont+CustomInitializer.swift in Sources */,
 				CE3BFA2924A2B4D200C0F8F1 /* Message.swift in Sources */,
+				CE888F6224A50173003098D3 /* IContentTypesObserver.swift in Sources */,
 				CE12A29A24A20CE10074930A /* R.generated.swift in Sources */,
+				CE11352224A422DB00B69FDB /* UISearchBar+ColorChanging.swift in Sources */,
+				CE888F6024A50164003098D3 /* ContentTypesObserver.swift in Sources */,
+				CE888F5624A484F5003098D3 /* ContentTypesRepository.swift in Sources */,
 				CE1FC43224A23EE400527F0F /* Aliases.swift in Sources */,
+				CE888F6424A501E7003098D3 /* Notification.Name+App.swift in Sources */,
 				CE358C7D24A207FB001EFAD5 /* AppDelegate.swift in Sources */,
+				CE888F6724A549C9003098D3 /* DefaultsManager.swift in Sources */,
 				CE1FC43624A23F2F00527F0F /* ScreenEventsObserver.swift in Sources */,
 				CE0AA86224A2B08800409F04 /* Action.swift in Sources */,
 				CE1FC43924A27E4D00527F0F /* ContentType.swift in Sources */,
@@ -443,9 +539,13 @@
 				CE1FC40E24A2133F00527F0F /* UINavigationController+StatusBar.swift in Sources */,
 				CE1FC42324A23E6A00527F0F /* Animation.swift in Sources */,
 				CE1FC42124A23E6A00527F0F /* DropDownMenuButton.swift in Sources */,
+				CE888F5824A484FD003098D3 /* IContentTypesRepository.swift in Sources */,
 				CE1FC43024A23EB300527F0F /* ConfigurableCell.swift in Sources */,
+				CE352B4D24A2F4DB0039F80B /* ContentTypesListVC.swift in Sources */,
 				CE0AA86524A2B41500409F04 /* MessageView.swift in Sources */,
 				CE3BFA2B24A2BE7C00C0F8F1 /* Constants.swift in Sources */,
+				CE11352624A42EC200B69FDB /* ContentTypeListCell.swift in Sources */,
+				CE352B5124A2FAFF0039F80B /* UISearchBar+TextFieldColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
