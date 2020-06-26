@@ -11,8 +11,8 @@ import UIKit
 struct ContentType {
     var name: String
     var rules: ValidationRules?
-    var imageURL: URL?
     var image: UIImage?
+    var imageFile: String?
     
     enum Name: String {
         case none, username, age, password

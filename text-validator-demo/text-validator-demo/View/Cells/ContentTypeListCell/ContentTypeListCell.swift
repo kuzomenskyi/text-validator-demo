@@ -38,7 +38,7 @@ class ContentTypeListCell: UITableViewCell {
     
     // MARK: Private Function
     private func configure(withContentType contentType: ContentType) {
-        contentTypeImageView.kf.setImage(with: contentType.imageURL, options: [.transition(.fade(0.5))])
+        contentTypeImageView.image = contentType.image
         contentTypeNameLabel.text = contentType.name
     }
 }

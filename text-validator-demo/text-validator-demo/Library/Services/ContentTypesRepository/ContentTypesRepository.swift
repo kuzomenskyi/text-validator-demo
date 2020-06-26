@@ -17,8 +17,7 @@ class ContentTypesRepository: IContentTypesRepository {
     private let contentTypes = Table("ContentTypes")
     
     private let name = Expression<String>("name")
-//    private let rules = Expression<ValidationRules?>("rules")
-    private let imageURL = Expression<String?>("imageURL")
+    private let imageFile = Expression<String?>("imageFile")
     private let minLength = Expression<Int?>("minLength")
     private let maxLength = Expression<Int?>("maxLength")
     private let areSpaceSymbolsConsidered = Expression<Bool?>("areSpaceSymbolsConsidered")
@@ -39,7 +38,7 @@ class ContentTypesRepository: IContentTypesRepository {
         do {
             try db?.run(contentTypes.create { t in
                 t.column(name, unique: true)
-                t.column(imageURL)
+                t.column(imageFile)
                 t.column(minLength)
                 t.column(maxLength)
                 t.column(areSpaceSymbolsConsidered)
@@ -67,14 +66,17 @@ class ContentTypesRepository: IContentTypesRepository {
                     let rules = ValidationRules(minLength: UInt($0[minLength] ?? 0), maxLength: $0[maxLength], areSpaceSymbolsConsidered: $0[areSpaceSymbolsConsidered], bannedSymbols: $0[bannedSymbols], whiteListSymbols: $0[whiteListSymbols], requiresBothUppercaseAndLowercase: $0[requiresBothUppercaseAndLowercase], requiresAtLeastOneNumberAndCharacter: $0[requiresAtLeastOneNumberAndCharacter], mustContainOnlyNumbers: $0[mustContainOnlyNumbers], mustContainOnlyLetters: $0[mustContainOnlyLetters])
                     
                     var type = ContentType(name: $0[name], rules: rules)
-                    if let imageURL = $0[imageURL] {
-                        type.imageURL = URL(string: imageURL)
+                    if let imageFile = $0[imageFile] {
+                        if let dataDecoded = Data(base64Encoded: imageFile, options: [.ignoreUnknownCharacters]) {
+                            let decodedimage = UIImage(data: dataDecoded)!
+                            type.image = decodedimage
+                        }
                     }
                     return type
                 }
             }
-        } catch {
-            print("@@@@@ An error occured while getting content types")
+        } catch(let error) {
+            print("@@@@@ An error occured while getting content types", error)
         }
         
         return output
@@ -83,9 +85,10 @@ class ContentTypesRepository: IContentTypesRepository {
     func insert(contentType: ContentType) {
         let type = contentType
         let rules = type.rules
+        
         let insertContentType = contentTypes.insert(
             name <- type.name,
-            imageURL <- type.imageURL?.absoluteString ?? nil,
+            imageFile <- type.imageFile ?? nil,
             minLength <- Int(rules?.minLength ?? 0),
             maxLength <- rules?.maxLength,
             areSpaceSymbolsConsidered <- rules?.areSpaceSymbolsConsidered,
@@ -111,7 +114,7 @@ class ContentTypesRepository: IContentTypesRepository {
         
         let updateContentType = type.update(
             self.name <- newType.name,
-            imageURL <- newType.imageURL?.absoluteString,
+            imageFile <- newType.imageFile,
             minLength <- Int(newRules?.minLength ?? 0),
             maxLength <- newRules?.maxLength,
             areSpaceSymbolsConsidered <- newRules?.areSpaceSymbolsConsidered,
@@ -126,8 +129,8 @@ class ContentTypesRepository: IContentTypesRepository {
         do {
             try db?.run(updateContentType)
             print("successfully updated content type")
-        } catch {
-            print("@@@@@ An error occured while updating content types")
+        } catch(let error) {
+            print("@@@@@ An error occured while updating content types", error)
         }
     }
     
@@ -138,8 +141,8 @@ class ContentTypesRepository: IContentTypesRepository {
         do {
             try db?.run(deleteType)
             print("successfully deleted content type")
-        } catch {
-            print("@@@@@ An error occured while deleting contentType")
+        } catch(let error) {
+            print("@@@@@ An error occured while deleting contentType", error)
         }
     }
 }

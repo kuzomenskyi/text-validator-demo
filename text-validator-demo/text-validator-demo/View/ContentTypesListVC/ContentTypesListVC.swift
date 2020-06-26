@@ -87,7 +87,16 @@ class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
     
     // MARK: Action
     @objc func plusEvent() {
-        let newType = ContentType(name: "Template \(Int.random(in: 0...9999999))", imageURL: URL.App.placeholderImageURL)
+        var newType = ContentType(name: "Template \(Int.random(in: 0...9999999))")
+        
+        if let imageURL = URL.App.placeholderImageURL, let data = try? Data(contentsOf: imageURL), let image = UIImage(data: data) {
+            let imageData = image.pngData()
+            let strBase64 = imageData?.base64EncodedString(options: .lineLength64Characters)
+            
+            newType.imageFile = strBase64 ?? nil
+        }
+        
+        
         contentTypesRepository?.insert(contentType: newType)
         contentTypes = contentTypesRepository?.getContentTypes() ?? [ContentType]()
         removeContentType(withName: "None")

@@ -177,10 +177,10 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManager {
     // MARK: Function
     func addContentTypeTemplates() {
         contentTypes = [
-            ContentType(name: ContentType.Name.none.rawValue.capitalized, imageURL: URL.App.placeholderImageURL),
-        ContentType(name: ContentType.Name.username.rawValue.capitalized, rules: ValidationRules(minLength: 4, maxLength: 20, areSpaceSymbolsConsidered: true, mustContainOnlyLetters: true), imageURL: URL.App.userProfileImageURL),
-        ContentType(name: ContentType.Name.age.rawValue.capitalized, rules: ValidationRules(minLength: 1, maxLength: 3, areSpaceSymbolsConsidered: false, mustContainOnlyNumbers: true), imageURL: URL.App.ageImageURL),
-        ContentType(name: ContentType.Name.password.rawValue.capitalized, rules: ValidationRules(minLength: 6, maxLength: 20, areSpaceSymbolsConsidered: true, requiresBothUppercaseAndLowercase: true, requiresAtLeastOneNumberAndCharacter: true), imageURL: URL.App.passwordImageURL)
+            ContentType(name: ContentType.Name.none.rawValue.capitalized, imageFile: URL.App.placeholderImageURL?.getBase64DecodedData() ?? nil),
+            ContentType(name: ContentType.Name.username.rawValue.capitalized, rules: ValidationRules(minLength: 4, maxLength: 20, areSpaceSymbolsConsidered: true, mustContainOnlyLetters: true), imageFile: URL.App.userProfileImageURL?.getBase64DecodedData() ?? nil),
+            ContentType(name: ContentType.Name.age.rawValue.capitalized, rules: ValidationRules(minLength: 1, maxLength: 3, areSpaceSymbolsConsidered: false, mustContainOnlyNumbers: true), imageFile: URL.App.ageImageURL?.getBase64DecodedData() ?? nil),
+            ContentType(name: ContentType.Name.password.rawValue.capitalized, rules: ValidationRules(minLength: 6, maxLength: 20, areSpaceSymbolsConsidered: true, requiresBothUppercaseAndLowercase: true, requiresAtLeastOneNumberAndCharacter: true), imageFile: URL.App.passwordImageURL?.getBase64DecodedData() ?? nil)
         ]
         
         setDefaultsValue(true, forKey: Constants.kIsContentTypeTemplatesAdded)
@@ -299,7 +299,9 @@ extension HomeVC: UITableViewDelegate {
             
             selectedContentType = contentType
             contentTypeTextField.text = output
-            imageView.kf.setImage(with: contentType.imageURL, options: [.transition(.fade(0.5))])
+            DispatchQueue.main.async { [weak self] in
+                self?.imageView.image = contentType.image
+            }
             if validationTextField.isSecureTextEntry {
                 validationTextField.text = ""
             }
