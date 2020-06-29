@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class HomeVC: UIViewController, TextValidator, IAlertHelper {
+class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManager {
     // MARK: Constant
     let dropDownMenuRowHeight: CGFloat = 50
     
@@ -18,6 +18,8 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
         return .lightContent
     }
     
+    var contentTypesRepository: IContentTypesRepository = ContentTypesRepository()
+    var contentTypesObserver: IContentTypesObserver = ContentTypesObserver()
     var expandedDropDownMenuDataSource: [Any] { expandedMenuButton?.dataSource ?? [Any]() }
     
     var expandedMenuButton: DropDownButton? {
@@ -34,11 +36,26 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
     var validationDropDownButtonDataSource = [ContentType]() {
         didSet {
             validationDropDownButton.dataSource = validationDropDownButtonDataSource
+            DispatchQueue.main.async { [weak self] in
+                self?.validationDropDownButton.dropDownTableView?.reloadData()
+            }
         }
     }
     
     var selectedContentType: ContentType?
     var successMessage = Message(message: Constants.validTextAlertMessage, image: R.image.successArrow(), color: UIColor.App.brightTurquoise)
+    
+    var contentTypes: [ContentType] {
+        get {
+            return contentTypesRepository.getContentTypes()
+        }
+        set(newTypes) {
+            newTypes.forEach { contentTypesRepository.insert(contentType: $0) }
+            validationDropDownButtonDataSource = newTypes
+        }
+    }
+    
+    var contentTypeNeedsUpdateIndexPath: IndexPath?
     
     var isSuccessMessageHidden: Bool {
         get {
@@ -51,6 +68,8 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
         }
     }
     
+    var isDropDownButtonTableViewUpdateNeeded = false
+    
     lazy var dropDownButtons = [validationDropDownButton]
     
     lazy var dropDownMenuButtons: [DropDownMenuButton] = [
@@ -60,6 +79,12 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
     lazy var messageView: MessageView = {
         let messageView = MessageView(withMessage: successMessage)
         return messageView
+    }()
+    
+    lazy var settingsButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: R.image.settings(), style: .plain, target: self, action: #selector(settingsEvent))
+        button.tintColor = .white
+        return button
     }()
     
     // MARK: Outlet
@@ -75,21 +100,36 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
     // MARK: View Controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = Constants.homeVCNavigationItemTitle
+        navigationItem.title = Constants.homeVCTitle
+        navigationItem.setRightBarButton(settingsButton, animated: false)
         view.backgroundColor = .white
         imageView.kf.setImage(with: URL.App.placeholderImageURL, options: [.transition(.fade(0.5))])
         contentTypeTextField.isUserInteractionEnabled = false
-        configureValidationDropDownButton()
+        if getDefaultsValue(forKey: Constants.kIsContentTypeTemplatesAdded) as? Bool ?? false == false {
+            addContentTypeTemplates()
+        }
         configureValidationContainerView()
         configureDropDownButtons()
         configureMessageView()
         let textFields = [contentTypeTextField, validationTextField]
         textFields.forEach { $0?.insets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0) }
+        
+        contentTypesObserver.observeForDatabaseContentUpdate { [weak self] (notification) in
+            guard let self = self else { return }
+            if let userInfo = notification.userInfo, let editedContentTypeName = userInfo[Constants.kContentTypeName], let stringTypeName = editedContentTypeName as? String {
+                
+                if self.contentTypeTextField.text?.lowercased() == stringTypeName.lowercased() {
+                    self.contentTypeNeedsUpdateIndexPath = IndexPath(row: 0, section: 0)
+                }
+            }
+            self.isDropDownButtonTableViewUpdateNeeded = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNeedsStatusBarAppearanceUpdate()
+        updateDropDownButtonIfNeeded()
     }
     
     // MARK: Init
@@ -127,18 +167,23 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
                     self?.isSuccessMessageHidden = true
             })
         }
-
-        #warning("Display alert if text field content type is nil")
+    }
+    
+    @objc func settingsEvent() {
+        let contentTypesListVC = ContentTypesListVC(contentTypesRepository: contentTypesRepository, nibName: R.nib.contentTypesListVC.name, bundle: R.nib.contentTypesListVC.bundle)
+        navigationController?.pushViewController(contentTypesListVC, animated: true)
     }
     
     // MARK: Function
-    func configureValidationDropDownButton() {
-        validationDropDownButtonDataSource = [
-            ContentType(name: ContentType.Name.none.rawValue.capitalized, imageURL: URL.App.placeholderImageURL),
-        ContentType(name: ContentType.Name.username.rawValue.capitalized, rules: ValidationRules(minLength: 4, maxLength: 20, areSpaceSymbolsConsidered: true, mustContainOnlyLetters: true), imageURL: URL.App.userProfileImageURL),
-        ContentType(name: ContentType.Name.age.rawValue.capitalized, rules: ValidationRules(minLength: 1, maxLength: 3, areSpaceSymbolsConsidered: false, mustContainOnlyNumbers: true), imageURL: URL.App.ageImageURL),
-        ContentType(name: ContentType.Name.password.rawValue.capitalized, rules: ValidationRules(minLength: 6, maxLength: 20, areSpaceSymbolsConsidered: true, requiresBothUppercaseAndLowercase: true, requiresAtLeastOneNumberAndCharacter: true), imageURL: URL.App.passwordImageURL)
+    func addContentTypeTemplates() {
+        contentTypes = [
+            ContentType(name: ContentType.Name.none.rawValue.capitalized, imageFile: URL.App.placeholderImageURL?.getBase64DecodedData() ?? nil),
+            ContentType(name: ContentType.Name.username.rawValue.capitalized, rules: ValidationRules(minLength: 4, maxLength: 20, areSpaceSymbolsConsidered: true, mustContainOnlyLetters: true), imageFile: URL.App.userProfileImageURL?.getBase64DecodedData() ?? nil),
+            ContentType(name: ContentType.Name.age.rawValue.capitalized, rules: ValidationRules(minLength: 1, maxLength: 3, areSpaceSymbolsConsidered: false, mustContainOnlyNumbers: true), imageFile: URL.App.ageImageURL?.getBase64DecodedData() ?? nil),
+            ContentType(name: ContentType.Name.password.rawValue.capitalized, rules: ValidationRules(minLength: 6, maxLength: 20, areSpaceSymbolsConsidered: true, requiresBothUppercaseAndLowercase: true, requiresAtLeastOneNumberAndCharacter: true), imageFile: URL.App.passwordImageURL?.getBase64DecodedData() ?? nil)
         ]
+        
+        setDefaultsValue(true, forKey: Constants.kIsContentTypeTemplatesAdded)
     }
     
     func configureValidationContainerView() {
@@ -158,6 +203,7 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
             guard let cellToDisplay = cellToDisplay else { return }
             button.element?.dropDownTableView?.register(UINib(nibName: cellToDisplay.identifier, bundle: nil), forCellReuseIdentifier: cellToDisplay.identifier)
         }
+        updateDropDownButtonContent()
     }
     
     func setDropDownTableViewsScrolling(isEnabled: Bool, except exception: DropDownButton? = nil) {
@@ -197,6 +243,32 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper {
             messageView.heightAnchor.constraint(equalTo: submitButton.heightAnchor, multiplier: 0.6)
         ])
     }
+    
+    func updateDropDownButtonContent() {
+        validationDropDownButtonDataSource = contentTypes
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.validationDropDownButton.dropDownTableView?.reloadData()
+        }
+    }
+    
+    func updateDropDownButtonIfNeeded() {
+        if isDropDownButtonTableViewUpdateNeeded {
+            updateDropDownButtonContent()
+            isDropDownButtonTableViewUpdateNeeded = false
+            
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                if self.validationDropDownButton.isExpanded {
+                    self.validationDropDownButton.shortenDropDownMenu()
+                }
+            }
+        }
+        if let contentTypeNeedsUpdateIndexPath = contentTypeNeedsUpdateIndexPath, let validationDropDownButton = self.validationDropDownButton.dropDownTableView {
+            tableView(validationDropDownButton, didSelectRowAt: contentTypeNeedsUpdateIndexPath)
+            self.contentTypeNeedsUpdateIndexPath = nil
+        }
+    }
 }
 
 // MARK: - DropDownMenuDelegate
@@ -213,6 +285,8 @@ extension HomeVC: DropDownMenuDelegate {
 // MARK: - UITableViewDelegateResponse from
 extension HomeVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let isIndexValid = !expandedDropDownMenuDataSource.isEmpty && expandedDropDownMenuDataSource.count - 1 >= indexPath.row
+        guard isIndexValid else { return }
         let selectedValue = expandedDropDownMenuDataSource[indexPath.row]
         
         #warning("Refactor that to conform the OCP")
@@ -225,7 +299,9 @@ extension HomeVC: UITableViewDelegate {
             
             selectedContentType = contentType
             contentTypeTextField.text = output
-            imageView.kf.setImage(with: contentType.imageURL, options: [.transition(.fade(0.5))])
+            DispatchQueue.main.async { [weak self] in
+                self?.imageView.image = contentType.image
+            }
             if validationTextField.isSecureTextEntry {
                 validationTextField.text = ""
             }

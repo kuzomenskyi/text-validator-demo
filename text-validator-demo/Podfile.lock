@@ -6,11 +6,15 @@ PODS:
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
+  - SQLite.swift (0.12.2):
+    - SQLite.swift/standard (= 0.12.2)
+  - SQLite.swift/standard (0.12.2)
 
 DEPENDENCIES:
   - IQKeyboardManager
   - Kingfisher
   - R.swift
+  - SQLite.swift (~> 0.12.0)
 
 SPEC REPOS:
   trunk:
@@ -18,13 +22,15 @@ SPEC REPOS:
     - Kingfisher
     - R.swift
     - R.swift.Library
+    - SQLite.swift
 
 SPEC CHECKSUMS:
   IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
   Kingfisher: d2b3d6a7200c93b34de9afcdf25c8dd9282ec277
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
+  SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
 
-PODFILE CHECKSUM: eaa3c0b942504d0dfd7877a9795c3c280e2c4e73
+PODFILE CHECKSUM: 75279094b04d7a35deac22ff66750175872a93b1
 
 COCOAPODS: 1.9.3

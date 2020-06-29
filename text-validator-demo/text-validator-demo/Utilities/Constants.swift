@@ -14,7 +14,10 @@ struct Constants {
     // MARK: ButtonTitles
     
     // MARK: NavigationItemTitles
-    static let homeVCNavigationItemTitle = "Text Validator Demo"
+    static let homeVCTitle = "Text Validator Demo"
+    static let contentTypesListVCTitle = "Content Types"
+    static let contentTypeActionAddVCTitle = "Add Content Type"
+    static let contentTypeActionEditVCTitle = "Edit Content Type"
     
     // MARK: CellIdentifiers
     
@@ -23,6 +26,7 @@ struct Constants {
     // MARK: Indent
     
     // MARK: ActionTitles
+    static let cancelActionTitle = "Cancel"
     
     // MARK: AlertTitles
     
@@ -36,4 +40,6 @@ struct Constants {
     // MARK: API
     
     // MARK: Keys
+    static let kContentTypeName = "contentTypeName"
+    static let kIsContentTypeTemplatesAdded = "isContentTypeTemplatesAdded"
 }

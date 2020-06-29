@@ -9,5 +9,6 @@ target 'text-validator-demo' do
   pod 'R.swift'
   pod 'IQKeyboardManager'
   pod 'Kingfisher'
+  pod 'SQLite.swift', '~> 0.12.0'
 
 end
