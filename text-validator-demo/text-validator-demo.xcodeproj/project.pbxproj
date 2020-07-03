@@ -295,12 +295,11 @@
 		CE358C7B24A207FB001EFAD5 /* text-validator-demo */ = {
 			isa = PBXGroup;
 			children = (
-				CE1FC41124A2159500527F0F /* Library */,
-				CE1FC41024A2159100527F0F /* Model */,
-				CE1FC40F24A2158200527F0F /* Utilities */,
 				CE358C9024A20804001EFAD5 /* Application */,
+				CE1FC40F24A2158200527F0F /* Utilities */,
+				CE1FC41024A2159100527F0F /* Model */,
+				CE1FC41124A2159500527F0F /* Library */,
 				CE12A29424A20AE90074930A /* Extensions */,
-				CE358C9224A20819001EFAD5 /* Resources */,
 				CE358C9124A20814001EFAD5 /* View */,
 				CE358C8A24A207FD001EFAD5 /* Info.plist */,
 			);
@@ -326,6 +325,7 @@
 				CE12A28124A209410074930A /* HomeVC */,
 				CE352B4924A2F4DB0039F80B /* ContentTypesListVC */,
 				CE888F6824A55B70003098D3 /* ContentTypeActionVC */,
+				CE358C9224A20819001EFAD5 /* Resources */,
 			);
 			path = View;
 			sourceTree = "<group>";
