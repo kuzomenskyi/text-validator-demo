@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3DA79DB253DDC52001E6DC8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DA79DA253DDC52001E6DC8 /* R.generated.swift */; };
 		CE0AA86024A2B05D00409F04 /* IAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0AA85F24A2B05D00409F04 /* IAlertHelper.swift */; };
 		CE0AA86224A2B08800409F04 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0AA86124A2B08800409F04 /* Action.swift */; };
 		CE0AA86524A2B41500409F04 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0AA86424A2B41500409F04 /* MessageView.swift */; };
@@ -16,7 +17,6 @@
 		CE12A29224A209F60074930A /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12A29024A209F60074930A /* HomeVC.swift */; };
 		CE12A29324A209F60074930A /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12A29124A209F60074930A /* HomeVC.xib */; };
 		CE12A29624A20AFC0074930A /* UIColor+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12A29524A20AFC0074930A /* UIColor+App.swift */; };
-		CE12A29A24A20CE10074930A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12A29924A20CE10074930A /* R.generated.swift */; };
 		CE12A29C24A20E080074930A /* UIFont+CustomInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12A29B24A20E080074930A /* UIFont+CustomInitializer.swift */; };
 		CE1D5DE724A2E2B000468F35 /* URL+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1D5DE624A2E2B000468F35 /* URL+App.swift */; };
 		CE1FC40E24A2133F00527F0F /* UINavigationController+StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FC40D24A2133F00527F0F /* UINavigationController+StatusBar.swift */; };
@@ -61,6 +61,7 @@
 		861E5EA2379C71A6E71F29CC /* Pods-text-validator-demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-text-validator-demo.debug.xcconfig"; path = "Target Support Files/Pods-text-validator-demo/Pods-text-validator-demo.debug.xcconfig"; sourceTree = "<group>"; };
 		90AFDD67BE91B3BA0FA934DC /* Pods_text_validator_demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_text_validator_demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0B25B280589B85CADD54037 /* Pods-text-validator-demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-text-validator-demo.release.xcconfig"; path = "Target Support Files/Pods-text-validator-demo/Pods-text-validator-demo.release.xcconfig"; sourceTree = "<group>"; };
+		C3DA79DA253DDC52001E6DC8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = "text-validator-demo/Resources/R.generated.swift"; sourceTree = SOURCE_ROOT; };
 		CE0AA85F24A2B05D00409F04 /* IAlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAlertHelper.swift; sourceTree = "<group>"; };
 		CE0AA86124A2B08800409F04 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		CE0AA86424A2B41500409F04 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
@@ -70,7 +71,6 @@
 		CE12A29024A209F60074930A /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		CE12A29124A209F60074930A /* HomeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
 		CE12A29524A20AFC0074930A /* UIColor+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+App.swift"; sourceTree = "<group>"; };
-		CE12A29924A20CE10074930A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		CE12A29B24A20E080074930A /* UIFont+CustomInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomInitializer.swift"; sourceTree = "<group>"; };
 		CE1D5DE624A2E2B000468F35 /* URL+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+App.swift"; sourceTree = "<group>"; };
 		CE1FC40D24A2133F00527F0F /* UINavigationController+StatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+StatusBar.swift"; sourceTree = "<group>"; };
@@ -333,7 +333,7 @@
 		CE358C9224A20819001EFAD5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CE12A29924A20CE10074930A /* R.generated.swift */,
+				C3DA79DA253DDC52001E6DC8 /* R.generated.swift */,
 				CE358C8524A207FD001EFAD5 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -520,7 +520,6 @@
 				CE12A29C24A20E080074930A /* UIFont+CustomInitializer.swift in Sources */,
 				CE3BFA2924A2B4D200C0F8F1 /* Message.swift in Sources */,
 				CE888F6224A50173003098D3 /* IContentTypesObserver.swift in Sources */,
-				CE12A29A24A20CE10074930A /* R.generated.swift in Sources */,
 				CE11352224A422DB00B69FDB /* UISearchBar+ColorChanging.swift in Sources */,
 				CE888F6024A50164003098D3 /* ContentTypesObserver.swift in Sources */,
 				CE888F5624A484F5003098D3 /* ContentTypesRepository.swift in Sources */,
@@ -534,6 +533,7 @@
 				CE0AA86024A2B05D00409F04 /* IAlertHelper.swift in Sources */,
 				CE1FC43724A23F2F00527F0F /* IScreenEventsObserver.swift in Sources */,
 				CE1FC42224A23E6A00527F0F /* Cell.swift in Sources */,
+				C3DA79DB253DDC52001E6DC8 /* R.generated.swift in Sources */,
 				CE1FC41724A2179F00527F0F /* ValidationRules.swift in Sources */,
 				CE358C7F24A207FB001EFAD5 /* SceneDelegate.swift in Sources */,
 				CE1FC40E24A2133F00527F0F /* UINavigationController+StatusBar.swift in Sources */,
@@ -683,14 +683,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VPGK98T659;
+				DEVELOPMENT_TEAM = SCEJQFP434;
 				INFOPLIST_FILE = "text-validator-demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "vladimir.kuzomenskyi.text-validator-demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "vladimir.kuzomenskyi.text-validator-demo2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -703,14 +703,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VPGK98T659;
+				DEVELOPMENT_TEAM = SCEJQFP434;
 				INFOPLIST_FILE = "text-validator-demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "vladimir.kuzomenskyi.text-validator-demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "vladimir.kuzomenskyi.text-validator-demo2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

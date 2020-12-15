@@ -144,7 +144,7 @@ class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
         })
         
         let cancelAction = Action(title: Constants.cancelActionTitle, style: .cancel, handler: nil)
-        presentAlert(title: "Are you sure?", actions: [yesAction, cancelAction], completion: nil)
+        presentAlert(title: "Content type deletion", message: "Are you sure?", actions: [yesAction, cancelAction], completion: nil)
 
         return output
     }
