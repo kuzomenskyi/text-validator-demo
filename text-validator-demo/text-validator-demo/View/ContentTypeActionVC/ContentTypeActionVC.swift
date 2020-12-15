@@ -7,6 +7,27 @@
 //
 
 import UIKit
+import SnapKit
+
+#warning("Configure UI with SnapKit")
+// Edit name text field
+// Change image button
+// Rules:
+// min length and max length slider
+// areSpaceSymbolsConsidered switch
+// areSpaceSymbolsConsidered info button
+// banned symbols text field
+// banned symbols info button
+// white list symbols text field
+// white list symbols info button
+// requiresBothUppercaseAndLowercase switch
+// requiresBothUppercaseAndLowercase info button
+// requiresAtLeastOneNumberAndCharacter switch
+// requiresAtLeastOneNumberAndCharacter info button
+// exclusiveness picker view (letters, numbers)
+// exclusiveness info button
+// Save button
+// Ask for confirmation if leaving the screen with changes not saved
 
 class ContentTypeActionVC: UIViewController {
     enum ScreenType {
