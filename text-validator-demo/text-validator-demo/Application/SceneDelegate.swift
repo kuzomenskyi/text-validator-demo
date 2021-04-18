@@ -21,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         let homeScreen = HomeVC(nibName: R.nib.homeVC.name, bundle: R.nib.homeVC.bundle)
         let navigationController = UINavigationController(rootViewController: homeScreen)
+        #warning("Move nav bar configuration code to separate function")
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.backgroundEffect = .none
         navBarAppearance.backgroundImage = nil

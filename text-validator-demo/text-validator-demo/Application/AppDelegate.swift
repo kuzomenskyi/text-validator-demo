@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window = UIWindow(frame: UIScreen.main.bounds)
             let homeScreen = HomeVC(nibName: R.nib.homeVC.name, bundle: R.nib.homeVC.bundle)
             let navigationController = UINavigationController(rootViewController: homeScreen)
+            #warning("Move nav bar configuration code to separate function")
             let navBar = navigationController.navigationBar
             navBar.shadowImage = UIImage()
             navBar.barTintColor = UIColor.App.jellyBean
