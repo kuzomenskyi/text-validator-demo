@@ -9,26 +9,6 @@
 import UIKit
 import SnapKit
 
-#warning("Configure UI with SnapKit")
-// Edit name text field
-// Change image button
-// Rules:
-// min length and max length slider
-// areSpaceSymbolsConsidered switch
-// areSpaceSymbolsConsidered info button
-// banned symbols text field
-// banned symbols info button
-// white list symbols text field
-// white list symbols info button
-// requiresBothUppercaseAndLowercase switch
-// requiresBothUppercaseAndLowercase info button
-// requiresAtLeastOneNumberAndCharacter switch
-// requiresAtLeastOneNumberAndCharacter info button
-// exclusiveness picker view (letters, numbers)
-// exclusiveness info button
-// Save button
-// Ask for confirmation if leaving the screen with changes not saved
-
 final class ContentTypeActionVC: UIViewController {
     enum ScreenType {
         case addContentTyoe, editContentType
@@ -41,34 +21,46 @@ final class ContentTypeActionVC: UIViewController {
         return .lightContent
     }
     
-    var screenType: ScreenType = .addContentTyoe
-    var contentTypeToEdit: ContentType?
+    // MARK: Private Variable
+    private var screenType: ScreenType = .addContentTyoe
+    private var contentTypeToEdit: ContentType?
     
-    // MARK: Outlet
+    private lazy var contentTypesView: ContentTypesView = {
+        let view = ContentTypesView()
+        return view
+    }()
     
     // MARK: View Controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationItem()
+        configureUI()
     }
     
     // MARK: Init
-    init(contentTypeToEdit: ContentType? = nil, nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    init(contentTypeToEdit: ContentType? = nil) {
+        super.init(nibName: nil, bundle: nil)
         self.contentTypeToEdit = contentTypeToEdit
-        if let contentTypeToEdit = contentTypeToEdit {
+        if contentTypeToEdit != nil {
             screenType = .editContentType
         }
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError()
     }
     
     // MARK: Action
     
     // MARK: Function
-    func configureNavigationItem() {
+    
+    // MARK: Privat function
+    private func configureUI() {
+        view.backgroundColor = .white
+        configureNavigationItem()
+        setContentTypesView()
+    }
+    
+    private func configureNavigationItem() {
         if screenType == .addContentTyoe {
             navigationItem.title = Constants.contentTypeActionAddVCTitle
         } else {
@@ -76,5 +68,14 @@ final class ContentTypeActionVC: UIViewController {
         }
         navigationItem.leftItemsSupplementBackButton = true
         navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
+    private func setContentTypesView() {
+        view.addSubview(contentTypesView)
+        contentTypesView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+        }
     }
 }

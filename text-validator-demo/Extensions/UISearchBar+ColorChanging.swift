@@ -14,9 +14,6 @@ extension UISearchBar {
     
     func set(textColor: UIColor) { if let textField = getTextField() { textField.textColor = textColor } }
     
-    #warning("Conflicts with IQKeyboardManager")
-//    func setPlaceholder(textColor: UIColor) { getTextField()?.setPlaceholder(textColor: textColor) }
-
     func setTextField(font: UIFont? = nil, backgroundColor: UIColor? = nil, textColor: UIColor? = nil) {
         guard let textField = getTextField() else { return }
         textField.font = font

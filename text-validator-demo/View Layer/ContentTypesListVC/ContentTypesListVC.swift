@@ -17,31 +17,33 @@ final class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
         return .lightContent
     }
     
-    var contentTypesRepository: IContentTypesRepository?
+    // MARK: Private Variable
     
-    var contentTypes = [ContentType]()
+    private var contentTypesRepository: IContentTypesRepository?
     
-    var filteredContentTypes = [ContentType]() {
+    private var contentTypes = [ContentType]()
+    
+    private var filteredContentTypes = [ContentType]() {
         didSet {
             updateTableView()
         }
     }
     
-    var isSearching = false {
+    private var isSearching = false {
         didSet {
             updateTableView()
         }
     }
     
-    var isContentTypeWasRemoved: Bool = false
+    private var isContentTypeWasRemoved: Bool = false
     
-    lazy var plusButton: UIBarButtonItem = {
+    private lazy var plusButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: R.image.plus(), style: .plain, target: self, action: #selector(plusEvent))
         button.tintColor = .white
         return button
     }()
     
-    var dataSource: [ContentType] {
+    private var dataSource: [ContentType] {
         get {
             return isSearching ? filteredContentTypes : contentTypes
         }
@@ -58,10 +60,10 @@ final class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
     }
     
     // MARK: Outlet
-    @IBOutlet var containerView: UIView!
-    @IBOutlet var searchContainerView: UIView!
-    @IBOutlet var searchBar: UISearchBar!
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet private var containerView: UIView!
+    @IBOutlet private var searchContainerView: UIView!
+    @IBOutlet private var searchBar: UISearchBar!
+    @IBOutlet private var tableView: UITableView!
     
     // MARK: View Controller life cycle
     override func viewDidLoad() {
@@ -104,21 +106,23 @@ final class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
     }
     
     // MARK: Function
-    func configureNavigationItem() {
+    
+    // MARK: - Private Function
+    private func configureNavigationItem() {
         navigationItem.title = Constants.contentTypesListVCTitle
         navigationItem.leftItemsSupplementBackButton = true
         navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.setRightBarButton(plusButton, animated: false)
     }
     
-    func configureSearchBar() {
+    private func configureSearchBar() {
         searchBar.layer.borderWidth = 0
         searchBar.backgroundImage = UIImage()
         searchBar.setTextFieldColor(color: .white)
         searchBar.delegate = self
     }
     
-    func configureTableView() {
+    private func configureTableView() {
         tableView.delegate = self; tableView.dataSource = self
         tableView.allowsSelection = false
         tableView.register(UINib(nibName: R.nib.contentTypeListCell.name, bundle: R.nib.contentTypeListCell.bundle), forCellReuseIdentifier: R.reuseIdentifier.contentTypeListCell.identifier)
@@ -126,7 +130,7 @@ final class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
         removeAdditionalSeparators()
     }
     
-    func deleteContentType(withIndexPath indexPath: IndexPath) -> Bool {
+    private func deleteContentType(withIndexPath indexPath: IndexPath) -> Bool {
         let contentTypeToDelete = dataSource[indexPath.row]
         var output = false
         
@@ -148,7 +152,7 @@ final class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
         return output
     }
     
-    func startSearchEvent(searchBar: UISearchBar, searchText: String) {
+    private func startSearchEvent(searchBar: UISearchBar, searchText: String) {
         guard isSearchTextValid(searchText) else { return }
         
         filteredContentTypes = contentTypes.filter {
@@ -164,38 +168,32 @@ final class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
         }
     }
     
-    func stopSearchEvent() {
-        
-    }
-    
-    func updateTableView() {
+    private func updateTableView() {
         DispatchQueue.main.async { [weak self] in
             self?.tableView.reloadData()
         }
     }
     
-    func deleteTableViewRows(at indexPaths: [IndexPath]) {
+    private func deleteTableViewRows(at indexPaths: [IndexPath]) {
         tableView.deleteRows(at: indexPaths, with: .automatic)
     }
     
-    func reloadTableViewRows(at indexPaths: [IndexPath]) {
+    private func reloadTableViewRows(at indexPaths: [IndexPath]) {
         tableView.reloadRows(at: indexPaths, with: .automatic)
     }
     
-    func dataSourceChangedEvent() {
-        #warning("update no content types message visibility here")
+    private func dataSourceChangedEvent() {
         if !isContentTypeWasRemoved {
             updateTableView()
         }
         isContentTypeWasRemoved = false
     }
     
-    func postProductUpdateNotification(_ contentType: ContentType? = nil) {
+    private func postProductUpdateNotification(_ contentType: ContentType? = nil) {
         let userInfo: [AnyHashable: Any]? = [Constants.kContentTypeName: contentType?.name ?? ""]
         NotificationCenter.default.post(name: Notification.Name.App.databaseContentUpdateNotification, object: nil, userInfo: userInfo)
     }
     
-    // MARK: - Private Function
     private func removeContentType(withName name: String) {
         contentTypes = contentTypes.filter { $0.name != name }
         filteredContentTypes = filteredContentTypes.filter { $0.name != name }
@@ -219,7 +217,7 @@ final class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
 extension ContentTypesListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let type = dataSource[indexPath.row]
-        let contentTypeActionVC = ContentTypeActionVC(contentTypeToEdit: type, nibName: R.nib.contentTypeActionVC.name, bundle: R.nib.contentTypeActionVC.bundle)
+        let contentTypeActionVC = ContentTypeActionVC(contentTypeToEdit: type)
         navigationController?.pushViewController(contentTypeActionVC, animated: true)
     }
     
@@ -248,7 +246,7 @@ extension ContentTypesListVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.contentTypeListCell, for: indexPath) as? ConfigurableCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.contentTypeListCell, for: indexPath) else {
             let output = UITableViewCell()
             output.backgroundColor = .red
             return output
@@ -257,12 +255,12 @@ extension ContentTypesListVC: UITableViewDataSource {
         cell.configure(withAny: dataSource[indexPath.row])
         cell.selectionStyle = .none
         
-        if let completionableCell = cell as? Completionable {
-            completionableCell.setCellCompletion(completion: { [weak self] cell in
-                guard let selectedCellIndexPath = tableView.indexPath(for: cell) else { return }
-                self?.tableView(tableView, didSelectRowAt: selectedCellIndexPath)
-            })
-        }
+        let completionableCell = cell as Completionable
+        
+        completionableCell.setCellCompletion(completion: { [weak self] cell in
+            guard let selectedCellIndexPath = tableView.indexPath(for: cell) else { return }
+            self?.tableView(tableView, didSelectRowAt: selectedCellIndexPath)
+        })
         return cell
     }
 }
@@ -279,7 +277,6 @@ extension ContentTypesListVC: UISearchBarDelegate {
             startSearchEvent(searchBar: searchBar, searchText: searchText)
         } else {
             isSearching = false
-            stopSearchEvent()
         }
     }
     

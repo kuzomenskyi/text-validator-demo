@@ -1,5 +1,5 @@
 //
-//  DropDownMenuButton.swift
+//  DropDownMenuButtonSettings.swift
 //  Liquor Sales
 //
 //  Created by vladimir.kuzomenskyi on 5/25/20.
@@ -8,8 +8,7 @@
 
 import UIKit
 
-#warning("Refactor or rename that")
-struct DropDownMenuButton {
+struct DropDownMenuButtonSettings {
     var anchorView: UIView
     var dropDownMenuDelegate: DropDownMenuDelegate?
 }

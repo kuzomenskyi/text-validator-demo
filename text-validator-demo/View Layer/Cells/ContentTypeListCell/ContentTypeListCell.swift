@@ -15,9 +15,9 @@ final class ContentTypeListCell: UITableViewCell {
     var cellCompletion: CellCompletion?
     
     // MARK: Outlet
-    @IBOutlet var contentTypeImageView: UIImageView!
-    @IBOutlet var contentTypeNameLabel: UILabel!
-    @IBOutlet var editButton: UIButton!
+    @IBOutlet private var contentTypeImageView: UIImageView!
+    @IBOutlet private var contentTypeNameLabel: UILabel!
+    @IBOutlet private var editButton: UIButton!
     
     // MARK: Init
     
@@ -32,11 +32,11 @@ final class ContentTypeListCell: UITableViewCell {
         configureUI()
     }
     
-    func configureUI() {
+    // MARK: Private Function
+    private func configureUI() {
         editButton.tintColor = UIColor.App.jellyBean
     }
     
-    // MARK: Private Function
     private func configure(withContentType contentType: ContentType) {
         contentTypeImageView.image = contentType.image
         contentTypeNameLabel.text = contentType.name

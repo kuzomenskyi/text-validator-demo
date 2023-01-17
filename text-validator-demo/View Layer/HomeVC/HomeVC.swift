@@ -17,22 +17,24 @@ final class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManag
         return .lightContent
     }
     
-    var contentTypesRepository: IContentTypesRepository = ContentTypesRepository()
-    var contentTypesObserver: IContentTypesObserver = ContentTypesObserver()
-    var expandedDropDownMenuDataSource: [Any] { expandedMenuButton?.dataSource ?? [Any]() }
+    // dropDownMenuHeight
+    var expandedStateHeight: CGFloat = 150
     
-    var expandedMenuButton: DropDownButton? {
+    // MARK: Private Variable
+    private var contentTypesRepository: IContentTypesRepository = ContentTypesRepository()
+    private var contentTypesObserver: IContentTypesObserver = ContentTypesObserver()
+    private var expandedDropDownMenuDataSource: [Any] { expandedMenuButton?.dataSource ?? [Any]() }
+    
+    private var expandedMenuButton: DropDownButton? {
         didSet {
             expandedMenuButton?.dropDownTableView?.reloadData()
             setDropDownMenu(isExpanded: false, except: expandedMenuButton)
         }
     }
     
-    var cellToDisplay: Cell? = Cell(identifier: R.reuseIdentifier.dropDownMenuCell.identifier)
-    // dropDownMenuHeight
-    var expandedStateHeight: CGFloat = 150
+    private var cellToDisplay: Cell? = Cell(identifier: R.reuseIdentifier.dropDownMenuCell.identifier)
     
-    var validationDropDownButtonDataSource = [ContentType]() {
+    private var validationDropDownButtonDataSource = [ContentType]() {
         didSet {
             validationDropDownButton.dataSource = validationDropDownButtonDataSource
             DispatchQueue.main.async { [weak self] in
@@ -41,10 +43,10 @@ final class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManag
         }
     }
     
-    var selectedContentType: ContentType?
-    var successMessage = Message(message: Constants.validTextAlertMessage, image: R.image.successArrow(), color: UIColor.App.brightTurquoise)
+    private var selectedContentType: ContentType?
+    private var successMessage = Message(message: Constants.validTextAlertMessage, image: R.image.successArrow(), color: UIColor.App.brightTurquoise)
     
-    var contentTypes: [ContentType] {
+    private var contentTypes: [ContentType] {
         get {
             return contentTypesRepository.getContentTypes()
         }
@@ -54,9 +56,9 @@ final class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManag
         }
     }
     
-    var contentTypeNeedsUpdateIndexPath: IndexPath?
+    private var contentTypeNeedsUpdateIndexPath: IndexPath?
     
-    var isSuccessMessageHidden: Bool {
+    private var isSuccessMessageHidden: Bool {
         get {
             return messageView.isHidden
         }
@@ -67,34 +69,34 @@ final class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManag
         }
     }
     
-    var isDropDownButtonTableViewUpdateNeeded = false
+    private var isDropDownButtonTableViewUpdateNeeded = false
     
-    lazy var dropDownButtons = [validationDropDownButton]
+    private lazy var dropDownButtons = [validationDropDownButton]
     
-    lazy var dropDownMenuButtons: [DropDownMenuButton] = [
-        DropDownMenuButton(anchorView: validationContainerView, dropDownMenuDelegate: self)
+    private lazy var dropDownMenuButtons: [DropDownMenuButtonSettings] = [
+        DropDownMenuButtonSettings(anchorView: validationContainerView, dropDownMenuDelegate: self)
     ]
     
-    lazy var messageView: MessageView = {
+    private lazy var messageView: MessageView = {
         let messageView = MessageView(withMessage: successMessage)
         return messageView
     }()
     
-    lazy var settingsButton: UIBarButtonItem = {
+    private lazy var settingsButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: R.image.settings(), style: .plain, target: self, action: #selector(settingsEvent))
         button.tintColor = .white
         return button
     }()
     
     // MARK: Outlet
-    @IBOutlet var scrollView: UIScrollView!
-    @IBOutlet var containerView: UIView!
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var validationTextField: TextField!
-    @IBOutlet var validationContainerView: UIView!
-    @IBOutlet var contentTypeTextField: TextField!
-    @IBOutlet var validationDropDownButton: DropDownButton!
-    @IBOutlet var submitButton: UIButton!
+    @IBOutlet private var scrollView: UIScrollView!
+    @IBOutlet private var containerView: UIView!
+    @IBOutlet private var imageView: UIImageView!
+    @IBOutlet private var validationTextField: TextField!
+    @IBOutlet private var validationContainerView: UIView!
+    @IBOutlet private var contentTypeTextField: TextField!
+    @IBOutlet private var validationDropDownButton: DropDownButton!
+    @IBOutlet private var submitButton: UIButton!
     
     // MARK: View Controller life cycle
     override func viewDidLoad() {
@@ -174,7 +176,9 @@ final class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManag
     }
     
     // MARK: Function
-    func addContentTypeTemplates() {
+    
+    // MARK: Private function
+    private func addContentTypeTemplates() {
         contentTypes = [
             ContentType(name: ContentType.Name.none.rawValue.capitalized, imageFile: UIImage.placeholderImage.getBase64DecodedData() ?? nil),
             ContentType(name: ContentType.Name.username.rawValue.capitalized, rules: ValidationRules(minLength: 4, maxLength: 20, areSpaceSymbolsConsidered: true, mustContainOnlyLetters: true), imageFile: UIImage.userProfileImage.getBase64DecodedData() ?? nil),
@@ -185,13 +189,13 @@ final class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManag
         setDefaultsValue(true, forKey: Constants.kIsContentTypeTemplatesAdded)
     }
     
-    func configureValidationContainerView() {
+    private func configureValidationContainerView() {
         validationContainerView.clipsToBounds = true
         validationContainerView.layer.cornerRadius = 10
         validationContainerView.backgroundColor = UIColor.App.athensGray
     }
     
-    func configureDropDownButtons() {
+    private func configureDropDownButtons() {
         for button in dropDownButtons.enumerated() {
             button.element?.dropDownTableView?.backgroundColor = .lightText
             button.element?.dropDownMenuDelegate = dropDownMenuButtons[button.offset].dropDownMenuDelegate
@@ -205,13 +209,13 @@ final class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManag
         updateDropDownButtonContent()
     }
     
-    func setDropDownTableViewsScrolling(isEnabled: Bool, except exception: DropDownButton? = nil) {
+    private func setDropDownTableViewsScrolling(isEnabled: Bool, except exception: DropDownButton? = nil) {
         exception?.dropDownTableView?.isScrollEnabled = !isEnabled
         let otherDropDownButtons = dropDownButtons.filter { $0 != exception }
         otherDropDownButtons.forEach { $0?.dropDownTableView?.isScrollEnabled = isEnabled }
     }
     
-    func setDropDownMenu(isExpanded: Bool, except exception: DropDownButton? = nil) {
+    private func setDropDownMenu(isExpanded: Bool, except exception: DropDownButton? = nil) {
         let otherDropDownButtons = dropDownButtons.filter { $0 != exception }
         let needsToBeExpanded = isExpanded
         
@@ -229,7 +233,7 @@ final class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManag
         }
     }
     
-    func configureMessageView() {
+    private func configureMessageView() {
         isSuccessMessageHidden = true
         
         view.addSubview(messageView)
@@ -243,7 +247,7 @@ final class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManag
         ])
     }
     
-    func updateDropDownButtonContent() {
+    private func updateDropDownButtonContent() {
         validationDropDownButtonDataSource = contentTypes
         
         DispatchQueue.main.async { [weak self] in
@@ -251,7 +255,7 @@ final class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManag
         }
     }
     
-    func updateDropDownButtonIfNeeded() {
+    private func updateDropDownButtonIfNeeded() {
         if isDropDownButtonTableViewUpdateNeeded {
             updateDropDownButtonContent()
             isDropDownButtonTableViewUpdateNeeded = false

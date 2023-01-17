@@ -13,16 +13,18 @@ final class MessageView: UIView {
     // MARK: Constant
     
     // MARK: Variable
-    var message: Message?
     
-    lazy var messageLabel: UILabel = {
+    // MARK: Private Variable
+    private var message: Message?
+    
+    private lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.textColor = message?.color
         label.font = UIFont.fontWithProperties(name: UIFont.Name.avenir, style: .medium, size: 17)
         return label
     }()
     
-    lazy var messageImageView: UIImageView = {
+    private lazy var messageImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -36,14 +38,16 @@ final class MessageView: UIView {
     }
     
     // MARK: Function
-    func configureUI() {
+    
+    // MARK: Private Function
+    private func configureUI() {
         configureMessageImageView(withImage: message?.image ?? UIImage())
         if let message = message {
             configureMessageLabel(withMessage: message)
         }
     }
     
-    func configureMessageImageView(withImage image: UIImage) {
+    private func configureMessageImageView(withImage image: UIImage) {
         messageImageView.image = image
         messageImageView.tintColor = message?.color ?? .green
         
@@ -58,7 +62,7 @@ final class MessageView: UIView {
         ])
     }
     
-    func configureMessageLabel(withMessage message: Message) {
+    private func configureMessageLabel(withMessage message: Message) {
         messageLabel.text = message.message
         
         addSubview(messageLabel)

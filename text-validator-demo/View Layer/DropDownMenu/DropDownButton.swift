@@ -121,12 +121,8 @@ final class DropDownButton: UIButton, IDropDownButton {
         subsctibeForScreenTransitionNotification()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        
-    }
-    
-    func subsctibeForScreenTransitionNotification() {
+    // MARK: Private function
+    private func subsctibeForScreenTransitionNotification() {
         screenEventsObserver.observeForScreenTransition { [weak self] in
             self?.screenTransitionEvent()
         }

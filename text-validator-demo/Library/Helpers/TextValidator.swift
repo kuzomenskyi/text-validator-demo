@@ -89,7 +89,6 @@ extension TextValidator {
         let spaceSymbol: Character = " "
         let textWithoutSpaces = text.filter { $0 != spaceSymbol }
         let numberOfSymbolsExceptSpaces = textWithoutSpaces.count
-        var output = true
         
         var isMinLengthValid: Bool {
             if let minLength = rules.minLength {

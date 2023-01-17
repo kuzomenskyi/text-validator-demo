@@ -8,8 +8,6 @@
 
 import UIKit
 
-#warning("Refactor that in separate DropDownMenu class")
-
 protocol DropDownViewDelegate: AnyObject {
     var dropDownMenuDelegate: DropDownMenuDelegate? { get }
     var anchorView: UIView? { get }

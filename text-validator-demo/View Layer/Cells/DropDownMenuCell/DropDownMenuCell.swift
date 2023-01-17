@@ -14,7 +14,7 @@ final class DropDownMenuCell: UITableViewCell {
     // MARK: Variable
     
     // MARK: Outlet
-    @IBOutlet var label: UILabel!
+    @IBOutlet private var label: UILabel!
     
     // MARK: Init
     
