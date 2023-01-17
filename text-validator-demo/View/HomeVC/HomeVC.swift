@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManager {
     // MARK: Constant
@@ -103,7 +102,7 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManager {
         navigationItem.title = Constants.homeVCTitle
         navigationItem.setRightBarButton(settingsButton, animated: false)
         view.backgroundColor = .white
-        imageView.kf.setImage(with: URL.App.placeholderImageURL, options: [.transition(.fade(0.5))])
+        imageView.image = UIImage.placeholderImage
         contentTypeTextField.isUserInteractionEnabled = false
         if getDefaultsValue(forKey: Constants.kIsContentTypeTemplatesAdded) as? Bool ?? false == false {
             addContentTypeTemplates()
@@ -177,10 +176,10 @@ class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManager {
     // MARK: Function
     func addContentTypeTemplates() {
         contentTypes = [
-            ContentType(name: ContentType.Name.none.rawValue.capitalized, imageFile: URL.App.placeholderImageURL?.getBase64DecodedData() ?? nil),
-            ContentType(name: ContentType.Name.username.rawValue.capitalized, rules: ValidationRules(minLength: 4, maxLength: 20, areSpaceSymbolsConsidered: true, mustContainOnlyLetters: true), imageFile: URL.App.userProfileImageURL?.getBase64DecodedData() ?? nil),
-            ContentType(name: ContentType.Name.age.rawValue.capitalized, rules: ValidationRules(minLength: 1, maxLength: 3, areSpaceSymbolsConsidered: false, mustContainOnlyNumbers: true), imageFile: URL.App.ageImageURL?.getBase64DecodedData() ?? nil),
-            ContentType(name: ContentType.Name.password.rawValue.capitalized, rules: ValidationRules(minLength: 6, maxLength: 20, areSpaceSymbolsConsidered: true, requiresBothUppercaseAndLowercase: true, requiresAtLeastOneNumberAndCharacter: true), imageFile: URL.App.passwordImageURL?.getBase64DecodedData() ?? nil)
+            ContentType(name: ContentType.Name.none.rawValue.capitalized, imageFile: UIImage.placeholderImage.getBase64DecodedData() ?? nil),
+            ContentType(name: ContentType.Name.username.rawValue.capitalized, rules: ValidationRules(minLength: 4, maxLength: 20, areSpaceSymbolsConsidered: true, mustContainOnlyLetters: true), imageFile: UIImage.userProfileImage.getBase64DecodedData() ?? nil),
+            ContentType(name: ContentType.Name.age.rawValue.capitalized, rules: ValidationRules(minLength: 1, maxLength: 3, areSpaceSymbolsConsidered: false, mustContainOnlyNumbers: true), imageFile: UIImage.ageImage.getBase64DecodedData() ?? nil),
+            ContentType(name: ContentType.Name.password.rawValue.capitalized, rules: ValidationRules(minLength: 6, maxLength: 20, areSpaceSymbolsConsidered: true, requiresBothUppercaseAndLowercase: true, requiresAtLeastOneNumberAndCharacter: true), imageFile: UIImage.passwordImage.getBase64DecodedData() ?? nil)
         ]
         
         setDefaultsValue(true, forKey: Constants.kIsContentTypeTemplatesAdded)

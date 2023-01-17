@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		184BEE7A2976AEFF00967814 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184BEE792976AEFF00967814 /* UIImage+Ext.swift */; };
 		C3DA79DB253DDC52001E6DC8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DA79DA253DDC52001E6DC8 /* R.generated.swift */; };
 		CE0AA86024A2B05D00409F04 /* IAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0AA85F24A2B05D00409F04 /* IAlertHelper.swift */; };
 		CE0AA86224A2B08800409F04 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0AA86124A2B08800409F04 /* Action.swift */; };
@@ -18,7 +19,6 @@
 		CE12A29324A209F60074930A /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12A29124A209F60074930A /* HomeVC.xib */; };
 		CE12A29624A20AFC0074930A /* UIColor+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12A29524A20AFC0074930A /* UIColor+App.swift */; };
 		CE12A29C24A20E080074930A /* UIFont+CustomInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12A29B24A20E080074930A /* UIFont+CustomInitializer.swift */; };
-		CE1D5DE724A2E2B000468F35 /* URL+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1D5DE624A2E2B000468F35 /* URL+App.swift */; };
 		CE1FC40E24A2133F00527F0F /* UINavigationController+StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FC40D24A2133F00527F0F /* UINavigationController+StatusBar.swift */; };
 		CE1FC41624A2179F00527F0F /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FC41424A2179F00527F0F /* CustomError.swift */; };
 		CE1FC41724A2179F00527F0F /* ValidationRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FC41524A2179F00527F0F /* ValidationRules.swift */; };
@@ -58,6 +58,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		184BEE792976AEFF00967814 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		861E5EA2379C71A6E71F29CC /* Pods-text-validator-demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-text-validator-demo.debug.xcconfig"; path = "Target Support Files/Pods-text-validator-demo/Pods-text-validator-demo.debug.xcconfig"; sourceTree = "<group>"; };
 		90AFDD67BE91B3BA0FA934DC /* Pods_text_validator_demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_text_validator_demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0B25B280589B85CADD54037 /* Pods-text-validator-demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-text-validator-demo.release.xcconfig"; path = "Target Support Files/Pods-text-validator-demo/Pods-text-validator-demo.release.xcconfig"; sourceTree = "<group>"; };
@@ -72,7 +73,6 @@
 		CE12A29124A209F60074930A /* HomeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
 		CE12A29524A20AFC0074930A /* UIColor+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+App.swift"; sourceTree = "<group>"; };
 		CE12A29B24A20E080074930A /* UIFont+CustomInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomInitializer.swift"; sourceTree = "<group>"; };
-		CE1D5DE624A2E2B000468F35 /* URL+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+App.swift"; sourceTree = "<group>"; };
 		CE1FC40D24A2133F00527F0F /* UINavigationController+StatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+StatusBar.swift"; sourceTree = "<group>"; };
 		CE1FC41424A2179F00527F0F /* CustomError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		CE1FC41524A2179F00527F0F /* ValidationRules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationRules.swift; sourceTree = "<group>"; };
@@ -166,8 +166,8 @@
 				CE352B4F24A2FAFF0039F80B /* UISearchBar+TextFieldColor.swift */,
 				CE1FC40D24A2133F00527F0F /* UINavigationController+StatusBar.swift */,
 				CE12A29B24A20E080074930A /* UIFont+CustomInitializer.swift */,
+				184BEE792976AEFF00967814 /* UIImage+Ext.swift */,
 				CE12A29524A20AFC0074930A /* UIColor+App.swift */,
-				CE1D5DE624A2E2B000468F35 /* URL+App.swift */,
 				CE888F6324A501E7003098D3 /* Notification.Name+App.swift */,
 			);
 			path = Extensions;
@@ -515,7 +515,6 @@
 				CE1FC42B24A23E8100527F0F /* DropDownMenuCell.swift in Sources */,
 				CE1FC41D24A236D200527F0F /* TextField.swift in Sources */,
 				CE1FC41924A217B200527F0F /* TextValidator.swift in Sources */,
-				CE1D5DE724A2E2B000468F35 /* URL+App.swift in Sources */,
 				CE1FC42D24A23E8100527F0F /* DropDownView.swift in Sources */,
 				CE12A29C24A20E080074930A /* UIFont+CustomInitializer.swift in Sources */,
 				CE3BFA2924A2B4D200C0F8F1 /* Message.swift in Sources */,
@@ -524,6 +523,7 @@
 				CE888F6024A50164003098D3 /* ContentTypesObserver.swift in Sources */,
 				CE888F5624A484F5003098D3 /* ContentTypesRepository.swift in Sources */,
 				CE1FC43224A23EE400527F0F /* Aliases.swift in Sources */,
+				184BEE7A2976AEFF00967814 /* UIImage+Ext.swift in Sources */,
 				CE888F6424A501E7003098D3 /* Notification.Name+App.swift in Sources */,
 				CE358C7D24A207FB001EFAD5 /* AppDelegate.swift in Sources */,
 				CE888F6724A549C9003098D3 /* DefaultsManager.swift in Sources */,
