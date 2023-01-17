@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DropDownMenuCell: UITableViewCell {
+final class DropDownMenuCell: UITableViewCell {
     // MARK: Constant
     
     // MARK: Variable

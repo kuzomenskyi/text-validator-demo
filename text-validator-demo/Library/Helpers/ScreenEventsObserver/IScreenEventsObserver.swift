@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol IScreenEventsObserver: class {
+protocol IScreenEventsObserver: AnyObject {
     func observeForScreenTransition(handler: @escaping Completion)
 }

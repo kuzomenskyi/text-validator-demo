@@ -10,7 +10,7 @@ import UIKit
 
 #warning("Refactor that in separate DropDownMenu class")
 
-protocol DropDownViewDelegate: class {
+protocol DropDownViewDelegate: AnyObject {
     var dropDownMenuDelegate: DropDownMenuDelegate? { get }
     var anchorView: UIView? { get }
     var dataSource: [Any] { get set }
@@ -21,7 +21,7 @@ protocol DropDownViewDelegate: class {
     func shortenDropDownMenu()
 }
 
-@objc protocol DropDownMenuDelegate: class {
+@objc protocol DropDownMenuDelegate: AnyObject {
     var dropDownMenuTableViewDelegate: UITableViewDelegate? { get }
     var dropDownMenuTableViewDataSource: UITableViewDataSource? { get }
     
@@ -31,7 +31,7 @@ protocol DropDownViewDelegate: class {
     @objc optional func configureDropDownView()
 }
 
-class DropDownView: UIView {
+final class DropDownView: UIView {
     // MARK: Constant
     
     // MARK: Variable

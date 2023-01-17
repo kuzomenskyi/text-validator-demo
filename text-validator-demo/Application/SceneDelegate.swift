@@ -21,7 +21,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         let homeScreen = HomeVC(nibName: R.nib.homeVC.name, bundle: R.nib.homeVC.bundle)
         let navigationController = UINavigationController(rootViewController: homeScreen)
-        #warning("Move nav bar configuration code to separate function")
+
+        configureNavBar()
+
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+    }
+    
+    // MARK: Private Function
+    private func configureNavBar() {
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.backgroundEffect = .none
         navBarAppearance.backgroundImage = nil
@@ -33,11 +41,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .foregroundColor: UIColor.white,
             .font: UIFont.fontWithProperties(name: .avenir, style: .heavy, size: 18) ?? .systemFont(ofSize: 18, weight: .heavy)
         ]
-        navigationController.navigationBar.tintColor = .white
-        navigationController.navigationBar.standardAppearance = navBarAppearance
-
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
+        
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().isTranslucent = true
+        UINavigationBar.appearance().standardAppearance = navBarAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+        UINavigationBar.appearance().compactAppearance = navBarAppearance
     }
 }
 

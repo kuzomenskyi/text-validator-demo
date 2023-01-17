@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManager {
+final class HomeVC: UIViewController, TextValidator, IAlertHelper, DefaultsManager {
     // MARK: Constant
     let dropDownMenuRowHeight: CGFloat = 50
     

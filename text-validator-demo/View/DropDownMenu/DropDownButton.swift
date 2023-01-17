@@ -29,7 +29,7 @@ protocol DropDownButtonDelegate: UIView {
     var isPortrait: Bool { get }
 }
 
-class DropDownButton: UIButton, IDropDownButton {
+final class DropDownButton: UIButton, IDropDownButton {
     enum ButtonAnimation {
         case flip, crossDissolve
     }

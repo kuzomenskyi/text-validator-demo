@@ -29,7 +29,7 @@ import SnapKit
 // Save button
 // Ask for confirmation if leaving the screen with changes not saved
 
-class ContentTypeActionVC: UIViewController {
+final class ContentTypeActionVC: UIViewController {
     enum ScreenType {
         case addContentTyoe, editContentType
     }

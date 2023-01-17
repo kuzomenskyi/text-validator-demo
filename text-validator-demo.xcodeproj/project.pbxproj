@@ -178,7 +178,6 @@
 			children = (
 				CE1FC43124A23EE400527F0F /* Aliases.swift */,
 				CE1FC42F24A23EB300527F0F /* ConfigurableCell.swift */,
-				CE1FC41C24A236D200527F0F /* TextField.swift */,
 				CE3BFA2A24A2BE7C00C0F8F1 /* Constants.swift */,
 				CE888F6D24A5640E003098D3 /* Completionable.swift */,
 			);
@@ -318,6 +317,7 @@
 		CE358C9124A20814001EFAD5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CE1FC41C24A236D200527F0F /* TextField.swift */,
 				CE0AA86424A2B41500409F04 /* MessageView.swift */,
 				CE1FC42424A23E8100527F0F /* Cells */,
 				CE1FC42824A23E8100527F0F /* DropDownMenu */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
+final class ContentTypesListVC: UIViewController, IAlertHelper, TextValidator {
     // MARK: Constant
     let tableViewRowHeight: CGFloat = 75
     

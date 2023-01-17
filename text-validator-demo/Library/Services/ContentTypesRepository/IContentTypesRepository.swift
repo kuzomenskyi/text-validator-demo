@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol IContentTypesRepository: class {
+protocol IContentTypesRepository: AnyObject {
     func getContentTypes() -> [ContentType]
     func insert(contentType: ContentType)
     func update(contentTypeWithName name: String, newType: ContentType)

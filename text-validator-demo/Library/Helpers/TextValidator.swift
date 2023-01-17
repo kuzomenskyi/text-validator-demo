@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol TextValidator: class {
+protocol TextValidator: AnyObject {
     func validate(_ text: String?, textFieldName: String?, withRules rules: ValidationRules, completion: @escaping (Error?) -> Void)
 }
 

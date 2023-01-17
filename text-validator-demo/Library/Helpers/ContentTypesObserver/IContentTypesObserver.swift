@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol IContentTypesObserver: class {
+protocol IContentTypesObserver: AnyObject {
     func observeForDatabaseContentUpdate(handler: @escaping NotificationCompletion)
 }

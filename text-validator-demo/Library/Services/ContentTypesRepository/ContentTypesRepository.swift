@@ -9,7 +9,7 @@
 import Foundation
 import SQLite
 
-class ContentTypesRepository: IContentTypesRepository {
+final class ContentTypesRepository: IContentTypesRepository {
     // MARK: Constant
     
     // MARK: Private Constant

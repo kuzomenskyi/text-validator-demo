@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ContentTypesObserver: IContentTypesObserver {
+final class ContentTypesObserver: IContentTypesObserver {
     // MARK: Constant
     
     // MARK: Variable

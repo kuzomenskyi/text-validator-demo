@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContentTypeListCell: UITableViewCell {
+final class ContentTypeListCell: UITableViewCell {
     // MARK: Constant
     
     // MARK: Variable

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessageView: UIView {
+final class MessageView: UIView {
 
     // MARK: Constant
     

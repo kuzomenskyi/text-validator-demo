@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol IAlertHelper: class {
+protocol IAlertHelper: AnyObject {
     
 }
 

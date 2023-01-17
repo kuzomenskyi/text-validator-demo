@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol DefaultsManager: class {
+protocol DefaultsManager: AnyObject {
     
 }
 
